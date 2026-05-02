@@ -9,30 +9,7 @@
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <style>
-:root{
-  --sky:#58A7FF;
-  --sky-light:#A8D0FF;
-  --sky-dark:#3A8FE8;
-  --navy:#0D1B3D;
-  --navy-2:#1A2F5C;
-  --gold:#FFB400;
-  --gold-light:#FFD063;
-  --bg-from:#E8F2FF;
-  --bg-to:#F4F8FF;
-  --white:#FFFFFF;
-  --soft:#F4F8FF;
-  --text:#0D1B3D;
-  --text-soft:#4A5568;
-  --text-light:#8B95A8;
-  --border:#E2E8F2;
-  --border-strong:#CBD5E1;
-  --glass-bg:rgba(255,255,255,0.72);
-  --glass-border:rgba(255,255,255,0.5);
-  --shadow-soft:0 4px 24px rgba(13,27,61,0.06);
-  --shadow-md:0 8px 32px rgba(13,27,61,0.08);
-  --shadow-lg:0 16px 48px rgba(13,27,61,0.12);
-  --shadow-xl:0 24px 60px rgba(13,27,61,0.16);
-}
+:root{--sky:#58A7FF;--sky-light:#A8D0FF;--sky-dark:#3A8FE8;--navy:#0D1B3D;--navy-2:#1A2F5C;--gold:#FFB400;--gold-light:#FFD063;--bg-from:#E8F2FF;--bg-to:#F4F8FF;--white:#FFFFFF;--soft:#F4F8FF;--text:#0D1B3D;--text-soft:#4A5568;--text-light:#8B95A8;--border:#E2E8F2;--border-strong:#CBD5E1;--glass-bg:rgba(255,255,255,0.72);--glass-border:rgba(255,255,255,0.5);--shadow-soft:0 4px 24px rgba(13,27,61,0.06);--shadow-md:0 8px 32px rgba(13,27,61,0.08);--shadow-lg:0 16px 48px rgba(13,27,61,0.12);--shadow-xl:0 24px 60px rgba(13,27,61,0.16)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;background:linear-gradient(180deg,var(--bg-from) 0%,var(--bg-to) 600px,#fff 1200px,#fff 100%);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:'tnum';min-height:100vh}
@@ -43,8 +20,6 @@ input,select{font-family:inherit;font-size:14px}
 img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;display:inline-block}
 .country-chip-flag img.emoji,.industry-chip-emoji img.emoji,.com-flag-big-emoji img.emoji,.mc-loc-flag img.emoji{height:1.4em;width:1.4em;vertical-align:-0.3em}
 .cat-emoji img.emoji{height:1em;width:1em}
-
-/* HEADER - GLASS */
 .site-header{background:rgba(255,255,255,0.85);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.6);position:sticky;top:0;z-index:50;box-shadow:0 1px 0 rgba(13,27,61,0.04)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1440px;margin:0 auto;gap:16px}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
@@ -53,8 +28,6 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .header-stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .pill{padding:6px 12px;background:var(--glass-bg);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:999px;font-size:12px;font-weight:600;color:var(--text);white-space:nowrap}
 .pill-strong{background:linear-gradient(135deg,var(--sky),var(--sky-dark));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(88,167,255,0.32);font-weight:700}
-
-/* HERO - SKY GLASS */
 .hero{padding:48px 0 88px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-100px;right:-200px;width:800px;height:800px;background:radial-gradient(circle,rgba(88,167,255,0.18) 0%,transparent 70%);border-radius:50%;animation:float 20s ease-in-out infinite}
 .hero::after{content:'';position:absolute;bottom:-200px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,180,0,0.12) 0%,transparent 70%);border-radius:50%;animation:float 25s ease-in-out infinite reverse}
@@ -70,8 +43,6 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .hero-title .accent{color:var(--sky-dark);position:relative;display:inline-block}
 .hero-title .accent::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:14px;background:rgba(88,167,255,0.2);z-index:-1;border-radius:4px}
 .hero-sub{font-size:17px;color:var(--text-soft);font-weight:500;max-width:760px;line-height:1.65}
-
-/* GLASS STAT CARDS - 4 KEY METRICS */
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
 .stat-card{background:var(--glass-bg);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--glass-border);border-radius:20px;padding:22px;display:flex;align-items:center;gap:16px;transition:all 0.25s;box-shadow:var(--shadow-soft)}
 .stat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);background:rgba(255,255,255,0.85)}
@@ -83,8 +54,6 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .stat-label{font-size:12px;color:var(--text-soft);font-weight:600;margin-bottom:4px;letter-spacing:-0.1px}
 .stat-value{font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-1px;line-height:1;display:flex;align-items:baseline;gap:4px}
 .stat-value-suffix{font-size:14px;font-weight:700;color:var(--text-soft)}
-
-/* HERO LOWER SECTIONS */
 .hero-section{margin-top:32px}
 .hero-section-label{font-size:12px;color:var(--text-soft);font-weight:700;letter-spacing:0.3px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .industry-list,.country-list{display:flex;gap:9px;flex-wrap:wrap}
@@ -92,8 +61,6 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .industry-chip:hover,.country-chip:hover{background:#fff;transform:translateY(-2px);border-color:var(--sky);box-shadow:0 8px 20px rgba(88,167,255,0.15);color:var(--sky-dark)}
 .industry-chip-emoji,.country-chip-flag{font-size:18px;line-height:1;display:inline-flex;align-items:center}
 .industry-chip-count,.country-chip-count{font-size:11px;font-weight:800;color:var(--sky-dark);background:rgba(88,167,255,0.15);padding:2px 8px;border-radius:999px}
-
-/* TOOLBAR - GLASS */
 .toolbar-wrap{margin-top:28px}
 .toolbar{background:rgba(255,255,255,0.85);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:20px;padding:18px 22px;border:1px solid var(--glass-border);display:flex;flex-wrap:wrap;gap:10px;align-items:center;box-shadow:var(--shadow-md)}
 .search-wrap{flex:1;min-width:260px;position:relative}
@@ -111,14 +78,10 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .search-suggestions-label{font-size:11px;color:var(--text-light);font-weight:700;letter-spacing:0.3px;margin-right:4px}
 .suggestion-chip{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:rgba(255,255,255,0.5);border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all 0.15s}
 .suggestion-chip:hover{background:var(--sky);color:#fff;border-color:var(--sky);transform:translateY(-1px);box-shadow:0 4px 10px rgba(88,167,255,0.25)}
-
-/* SECTION */
 .section{padding:36px 0 60px}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px;flex-wrap:wrap;gap:12px}
 .section-title{font-size:24px;font-weight:900;letter-spacing:-0.7px;color:var(--navy)}
 .section-meta{font-size:13px;color:var(--text-soft);font-weight:500}
-
-/* COMMITTEE/CATEGORY CARDS */
 .com-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .com-card{background:#fff;border-radius:18px;border:1px solid var(--border);padding:22px;transition:all 0.25s;cursor:pointer;position:relative;overflow:hidden;box-shadow:var(--shadow-soft)}
 .com-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--c,var(--sky));transition:height 0.25s}
@@ -141,8 +104,6 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .com-flag-big-count{font-size:10px;color:var(--sky-dark);font-weight:800;background:#fff;padding:1px 6px;border-radius:999px}
 .com-card-cta{position:absolute;bottom:16px;right:20px;font-size:12px;font-weight:800;color:var(--c,var(--sky));opacity:0;transform:translateX(-6px);transition:all 0.2s}
 .com-card:hover .com-card-cta{opacity:1;transform:translateX(0)}
-
-/* MEMBER CARDS */
 .member-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:14px}
 .member-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:18px;box-shadow:var(--shadow-soft);transition:all 0.2s;position:relative;overflow:hidden}
 .member-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--sky)}
@@ -173,7 +134,6 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .mc-tongsang-link:hover{text-decoration:underline}
 .mc-email{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--sky-dark);font-weight:600;word-break:break-all;padding:6px 0;border-top:1px solid var(--border)}
 .mc-email:hover{color:var(--sky)}
-
 .com-detail-banner{background:#fff;border-radius:18px;padding:24px 28px;border:1px solid var(--border);margin-bottom:22px;position:relative;overflow:hidden;box-shadow:var(--shadow-soft)}
 .com-detail-banner::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c,var(--sky))}
 .com-detail-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
@@ -184,82 +144,23 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .com-detail-back:hover{background:var(--soft);border-color:var(--sky);color:var(--sky-dark);transform:translateX(-2px)}
 .com-detail-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--sky-dark);font-weight:700;padding:8px 14px;background:var(--soft);border-radius:8px;margin-top:10px}
 .com-detail-link:hover{background:rgba(88,167,255,0.15)}
-
 .pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:36px;flex-wrap:wrap}
 .pagination button{padding:10px 14px;background:#fff;border:1.5px solid var(--border);border-radius:10px;font-size:13px;font-weight:700;color:var(--text-soft);min-width:42px;transition:all 0.15s}
 .pagination button:hover:not(:disabled){border-color:var(--sky);color:var(--sky-dark);transform:translateY(-1px)}
 .pagination button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .pagination button:disabled{opacity:0.4;cursor:not-allowed}
-
 footer{padding:32px 0 40px;text-align:center;color:var(--text-light);font-size:12px;border-top:1px solid var(--border);margin-top:60px;background:#fff}
 footer a{color:var(--sky-dark);font-weight:700}
 footer a:hover{text-decoration:underline}
-
 .empty-state{padding:80px 24px;text-align:center;color:var(--text-light)}
 .empty-state h3{color:var(--navy);font-size:18px;margin-bottom:8px;font-weight:800}
 .loading{padding:120px 24px;text-align:center;color:var(--text-light)}
 .loading-spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--sky);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 18px}
 .loading p{font-size:14px;font-weight:600}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* MOBILE OPTIMIZATIONS */
-@media(max-width:1024px){
-  .stat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .com-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:640px){
-  .container{padding:0 16px}
-  .header-inner{padding:12px 16px;gap:8px}
-  .brand-tagline{display:none}
-  .brand-logo-img{height:36px}
-  .pill{padding:5px 10px;font-size:11px}
-  .header-stats{gap:5px}
-  .hero{padding:32px 0 64px}
-  .hero-title{font-size:32px;letter-spacing:-1.4px;margin-bottom:14px}
-  .hero-sub{font-size:14px}
-  .hero-top{margin-bottom:14px}
-  .hero-badge,.hero-date-badge{font-size:11px;padding:6px 12px}
-  .stat-grid{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px}
-  .stat-card{padding:16px;gap:12px;border-radius:16px}
-  .stat-icon{width:42px;height:42px;font-size:20px;border-radius:11px}
-  .stat-value{font-size:22px}
-  .stat-label{font-size:11px}
-  .stat-value-suffix{font-size:12px}
-  .toolbar{padding:14px;flex-direction:column;align-items:stretch;gap:8px}
-  .search-wrap,.filter-select,.view-toggle{width:100%;min-width:0}
-  .filter-select{font-size:13px;padding:12px 36px 12px 14px}
-  .search-wrap input{padding:13px 14px 13px 42px;font-size:14px}
-  .search-icon{left:14px}
-  .search-suggestions{padding-top:10px}
-  .suggestion-chip{padding:5px 10px;font-size:11px}
-  .industry-list,.country-list{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-  .industry-chip,.country-chip{flex-shrink:0;scroll-snap-align:start;font-size:12px;padding:8px 13px}
-  .section{padding:24px 0 48px}
-  .section-title{font-size:20px}
-  .section-head{margin-bottom:16px}
-  .com-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .com-card{padding:14px;border-radius:14px}
-  .com-num{width:40px;height:40px;font-size:20px;border-radius:11px}
-  .com-count-num{font-size:22px}
-  .com-count-lbl{font-size:10px}
-  .com-name{font-size:14px}
-  .com-short{font-size:9px;margin-bottom:10px}
-  .com-tongsang{font-size:10px;padding:5px 9px;margin-bottom:10px}
-  .com-flag-big{font-size:10px;padding:3px 8px}
-  .com-flag-big-emoji{font-size:14px}
-  .member-list{grid-template-columns:1fr;gap:10px}
-  .member-card{padding:14px;border-radius:14px}
-  .mc-name{font-size:15px}
-  .mc-avatar{width:40px;height:40px;font-size:16px}
-  .com-detail-banner{padding:20px;border-radius:14px}
-  .com-detail-num{width:48px;height:48px;font-size:24px}
-  .com-detail-name{font-size:20px}
-}
-@media(max-width:380px){
-  .stat-grid{grid-template-columns:1fr}
-  .com-grid{grid-template-columns:1fr}
-  .hero-title{font-size:28px}
-}
+@media(max-width:1024px){.stat-grid{grid-template-columns:repeat(2,1fr);gap:12px}.com-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.container{padding:0 16px}.header-inner{padding:12px 16px;gap:8px}.brand-tagline{display:none}.brand-logo-img{height:36px}.pill{padding:5px 10px;font-size:11px}.header-stats{gap:5px}.hero{padding:32px 0 64px}.hero-title{font-size:32px;letter-spacing:-1.4px;margin-bottom:14px}.hero-sub{font-size:14px}.hero-top{margin-bottom:14px}.hero-badge,.hero-date-badge{font-size:11px;padding:6px 12px}.stat-grid{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px}.stat-card{padding:16px;gap:12px;border-radius:16px}.stat-icon{width:42px;height:42px;font-size:20px;border-radius:11px}.stat-value{font-size:22px}.stat-label{font-size:11px}.stat-value-suffix{font-size:12px}.toolbar{padding:14px;flex-direction:column;align-items:stretch;gap:8px}.search-wrap,.filter-select,.view-toggle{width:100%;min-width:0}.filter-select{font-size:13px;padding:12px 36px 12px 14px}.search-wrap input{padding:13px 14px 13px 42px;font-size:14px}.search-icon{left:14px}.search-suggestions{padding-top:10px}.suggestion-chip{padding:5px 10px;font-size:11px}.industry-list,.country-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}.industry-chip,.country-chip{font-size:12px;padding:8px 12px;width:100%;justify-content:flex-start}.section{padding:24px 0 48px}.section-title{font-size:20px}.section-head{margin-bottom:16px}.com-grid{grid-template-columns:1fr 1fr;gap:10px}.com-card{padding:14px;border-radius:14px}.com-num{width:40px;height:40px;font-size:20px;border-radius:11px}.com-count-num{font-size:22px}.com-count-lbl{font-size:10px}.com-name{font-size:14px}.com-short{font-size:9px;margin-bottom:10px}.com-tongsang{font-size:10px;padding:5px 9px;margin-bottom:10px}.com-flag-big{font-size:10px;padding:3px 8px}.com-flag-big-emoji{font-size:14px}.member-list{grid-template-columns:1fr;gap:10px}.member-card{padding:14px;border-radius:14px}.mc-name{font-size:15px}.mc-avatar{width:40px;height:40px;font-size:16px}.com-detail-banner{padding:20px;border-radius:14px}.com-detail-num{width:48px;height:48px;font-size:24px}.com-detail-name{font-size:20px}}
+@media(max-width:380px){.stat-grid{grid-template-columns:1fr}.com-grid{grid-template-columns:1fr}.hero-title{font-size:28px}}
 </style>
 </head>
 <body>
@@ -282,7 +183,7 @@ footer a:hover{text-decoration:underline}
 <div class="stat-card">
 <div class="stat-icon">👥</div>
 <div class="stat-info">
-<span class="stat-label">옥타 공식 홈페이지에 등록된 회원</span>
+<span class="stat-label">DB등록 회원</span>
 <div class="stat-value"><span id="heroTotal" data-target="0">0</span><span class="stat-value-suffix">명</span></div>
 </div>
 </div>
@@ -324,7 +225,7 @@ footer a:hover{text-decoration:underline}
 <select class="filter-select" id="countryFilter"><option value="">📍 전체 국가</option></select>
 <select class="filter-select" id="chapterFilter"><option value="">🏢 전체 지회</option></select>
 <select class="filter-select" id="positionFilter"><option value="">⭐ 전체 직위</option><option value="director">상임이사만</option><option value="chapter">지회장</option><option value="honor">명예회장</option><option value="exec">임원진(직책 보유)</option></select>
-<div class="view-toggle"><button id="viewCom" class="active">업종별</button><button id="viewAll">전체 명단</button></div>
+<div class="view-toggle"><button id="viewCom" class="active">업종별</button><button id="viewAll">DB등록 명단</button></div>
 <div class="search-suggestions">
 <span class="search-suggestions-label">빠른 검색:</span>
 <button class="suggestion-chip" data-q="화장품">💄 화장품</button>
@@ -416,7 +317,7 @@ MEMBERS.forEach(m=>{if(m.country)countries[m.country]=(countries[m.country]||0)+
 const catCounts={};CATEGORIES.forEach(c=>catCounts[c.n]=0);
 MEMBERS.forEach(m=>(m.categories||[]).forEach(n=>catCounts[n]++));
 
-document.getElementById('hdrTotal').textContent='전체 '+STATS.total.toLocaleString()+'명';
+document.getElementById('hdrTotal').textContent='DB등록 '+STATS.total.toLocaleString()+'명';
 animateCounter(document.getElementById('heroTotal'),STATS.total);
 animateCounter(document.getElementById('heroChapters'),Object.keys(chapters).length);
 animateCounter(document.getElementById('heroCountries'),Object.keys(countries).length);
@@ -452,7 +353,7 @@ function tongsangSuggestion(cats){if(!cats||cats.length===0)return '';const tsSe
 
 function mCard(m){const t=(m.categories||[]).map(n=>{const c=cMap[n];return '<span class="mc-cat" data-com="'+n+'" style="--tc:'+c.color+'"><span class="cat-emoji">'+c.emoji+'</span>'+esc(c.name)+'</span>'}).join('');const ini=initials(m.name);return '<div class="member-card'+(m.isDirector?' is-director':'')+'"><div class="mc-head"><div class="mc-avatar">'+esc(ini)+'</div><div class="mc-info"><div class="mc-name-row"><div class="mc-name">'+esc(m.name||'-')+'</div><div class="mc-loc-flag">'+flag(m.country)+'</div></div><div class="mc-loc-text">'+(m.region?'<span class="mc-loc-region-badge">'+esc(m.region)+'</span>':'')+esc(m.country)+(m.chapter?' · '+esc(m.chapter):'')+'</div></div></div>'+posBadges(m.pos)+(m.company?'<div class="mc-company">🏢 '+esc(m.company)+'</div>':'')+(m.industry?'<div class="mc-industry">📋 '+esc(m.industry)+'</div>':'')+(t?'<div class="mc-cats">'+t+'</div>':'')+tongsangSuggestion(m.categories)+(m.email?'<a class="mc-email" href="mailto:'+esc(m.email)+'">✉️ '+esc(m.email)+'</a>':'')+'</div>'}
 
-function rMem(){const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));if(state.page>tp)state.page=tp;const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);let h='';if(state.view==='memberDetail'&&state.committee!==null){const c=state.committee===0?null:cMap[state.committee];const col=c?c.color:'#5A6478';const nm=c?c.name:'기타';const sh=c?c.short:'OTHER';const em=c?c.emoji:'❓';h+='<button class="com-detail-back" onclick="window._back()">← 업종 목록으로</button>';h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:color-mix(in srgb,'+col+' 15%,#fff);color:'+col+'"><span class="cat-emoji">'+em+'</span></div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c&&c.ts>0?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 추천 통상위원회: #'+c.ts+' '+esc(TONGSANG_NAMES[c.ts])+' →</a>':'')+'</div>'}h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'전체 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}else{h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';if(tp>1){h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>'}}document.getElementById('content').innerHTML=h;twemojify();document.querySelectorAll('.mc-cat').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})})}
+function rMem(){const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));if(state.page>tp)state.page=tp;const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);let h='';if(state.view==='memberDetail'&&state.committee!==null){const c=state.committee===0?null:cMap[state.committee];const col=c?c.color:'#5A6478';const nm=c?c.name:'기타';const sh=c?c.short:'OTHER';const em=c?c.emoji:'❓';h+='<button class="com-detail-back" onclick="window._back()">← 업종 목록으로</button>';h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:color-mix(in srgb,'+col+' 15%,#fff);color:'+col+'"><span class="cat-emoji">'+em+'</span></div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c&&c.ts>0?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 추천 통상위원회: #'+c.ts+' '+esc(TONGSANG_NAMES[c.ts])+' →</a>':'')+'</div>'}h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'DB등록 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}else{h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';if(tp>1){h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>'}}document.getElementById('content').innerHTML=h;twemojify();document.querySelectorAll('.mc-cat').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})})}
 
 function render(){document.getElementById('viewCom').classList.toggle('active',state.view==='committees');document.getElementById('viewAll').classList.toggle('active',state.view==='all');if(state.view==='committees')rCom();else rMem()}
 window._back=()=>{state.view='committees';state.committee=null;state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})};
