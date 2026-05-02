@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKTA 통상위원회 회원 디렉토리 · 세계한인경제무역협회</title>
+<meta name="description" content="OKTA 회원 디렉토리 - Google Sheets 실시간 연동. 15개 통상위원회 분과 + 임원진/지회장/감사 직위 표시.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--okta-red:#C8102E;--okta-red-dark:#9B0A22;--okta-navy:#1A2F5C;--okta-gold:#F2A825;--okta-yellow:#FFD93D;--bg:#F5F7FB;--card:#FFFFFF;--text:#1A1F36;--text-soft:#5A6478;--text-light:#8B95A8;--border:#E5E9F0;--shadow-sm:0 1px 3px rgba(20,30,60,0.06),0 1px 2px rgba(20,30,60,0.04);--shadow-md:0 4px 12px rgba(20,30,60,0.08);--shadow-lg:0 12px 28px rgba(20,30,60,0.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+input,select{font-family:inherit;font-size:14px}
+.container{max-width:1400px;margin:0 auto;padding:0 24px}
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1400px;margin:0 auto;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-logo-img{height:46px;width:auto;flex-shrink:0;display:block}
+.brand-tagline{font-size:11px;color:var(--text-light);font-weight:600;letter-spacing:0.5px;border-left:1px solid var(--border);padding-left:12px;line-height:1.4}
+.header-stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{padding:6px 12px;background:#F5F7FB;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:600;color:var(--text-soft);white-space:nowrap}
+.pill-strong{background:linear-gradient(135deg,var(--okta-red),var(--okta-red-dark));color:#fff;border-color:transparent}
+.hero{background:linear-gradient(135deg,var(--okta-navy) 0%,#0F1B3C 100%);color:#fff;padding:56px 0 88px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(200,16,46,0.25) 0%,transparent 60%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(242,168,37,0.18) 0%,transparent 60%);border-radius:50%}
+.hero-inner{position:relative;z-index:1}
+.hero-badge{display:inline-block;padding:6px 14px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);border-radius:999px;font-size:12px;font-weight:600;letter-spacing:0.5px;margin-bottom:18px}
+.hero-title{font-size:44px;font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.hero-title .accent{background:linear-gradient(135deg,var(--okta-gold),var(--okta-yellow));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:17px;opacity:0.85;font-weight:400;max-width:700px;line-height:1.6}
+.hero-stats{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+.hero-stat{display:flex;flex-direction:column;gap:2px}
+.hero-stat-num{font-size:28px;font-weight:900;letter-spacing:-1px}
+.hero-stat-label{font-size:12px;opacity:0.7;font-weight:500;letter-spacing:0.5px;text-transform:uppercase}
+.toolbar{margin-top:-44px;position:relative;z-index:5;background:#fff;border-radius:16px;padding:20px 24px;box-shadow:var(--shadow-lg);border:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.search-wrap{flex:1;min-width:240px;position:relative}
+.search-wrap input{width:100%;padding:12px 16px 12px 42px;border:1px solid var(--border);border-radius:10px;background:#F5F7FB;font-size:14px;outline:none}
+.search-wrap input:focus{border-color:var(--okta-red);background:#fff;box-shadow:0 0 0 3px rgba(200,16,46,0.08)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-light)}
+.filter-select{padding:12px 38px 12px 14px;border:1px solid var(--border);border-radius:10px;background:#F5F7FB;-webkit-appearance:none;appearance:none;font-weight:500;color:var(--text);min-width:140px;cursor:pointer;outline:none}
+.view-toggle{display:flex;background:#F5F7FB;border:1px solid var(--border);border-radius:10px;padding:3px}
+.view-toggle button{padding:9px 16px;font-size:13px;font-weight:600;color:var(--text-soft);border-radius:7px}
+.view-toggle button.active{background:#fff;color:var(--okta-navy);box-shadow:var(--shadow-sm)}
+.section{padding:36px 0 60px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.section-title{font-size:22px;font-weight:800;letter-spacing:-0.5px}
+.section-meta{font-size:13px;color:var(--text-light)}
+.com-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.com-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:22px;transition:all 0.2s;cursor:pointer;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+.com-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--c,var(--okta-red));transition:height 0.2s}
+.com-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--c,var(--okta-red))}
+.com-card:hover::before{height:6px}
+.com-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.com-num{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:var(--c,var(--okta-red));color:#fff;font-weight:900;font-size:16px}
+.com-count-num{font-size:24px;font-weight:900;letter-spacing:-0.5px}
+.com-count-lbl{font-size:11px;color:var(--text-light);font-weight:600;letter-spacing:0.5px;text-transform:uppercase;margin-left:4px}
+.com-name{font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.3px}
+.com-short{font-size:11px;color:var(--c,var(--okta-red));font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.com-flags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.com-flag{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;background:#F5F7FB;border-radius:999px;font-size:11px;font-weight:600;color:var(--text-soft)}
+.member-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:14px}
+.member-card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:18px;box-shadow:var(--shadow-sm);transition:all 0.15s;position:relative}
+.member-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.member-card.is-director{border-color:#F2A825;border-width:2px;padding:17px}
+.member-card.is-director::after{content:'⭐ 임원';position:absolute;top:-1px;right:-1px;background:#F2A825;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:0 14px 0 8px;letter-spacing:0.5px}
+.mc-row1{display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;gap:8px}
+.mc-name{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.3px}
+.mc-loc{font-size:12px;color:var(--text-soft);font-weight:600;background:#F5F7FB;padding:4px 9px;border-radius:6px;flex-shrink:0;text-align:right}
+.mc-loc-region{display:block;font-size:10px;opacity:0.7;margin-bottom:2px}
+.mc-positions{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.mc-position{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:3px 9px;border-radius:5px}
+.mc-position.honor{background:#C8102E}
+.mc-position.board{background:#3F51B5}
+.mc-position.exec{background:#1A2F5C}
+.mc-position.chapter{background:#F2A825;color:#1A1F36}
+.mc-position.audit{background:#000}
+.mc-company{font-size:14px;color:var(--text-soft);margin-bottom:6px;font-weight:500}
+.mc-industry{font-size:13px;color:var(--text-light);margin-bottom:10px}
+.mc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.mc-tag{padding:3px 9px;background:var(--tc,#F5F7FB);color:#fff;font-size:11px;font-weight:700;border-radius:5px;cursor:pointer;transition:opacity 0.15s}
+.mc-tag:hover{opacity:0.85}
+.mc-email{font-size:12px;color:var(--okta-navy);font-weight:500;word-break:break-all}
+.mc-email:hover{color:var(--okta-red);text-decoration:underline}
+.com-detail-banner{background:#fff;border-radius:16px;padding:24px 28px;border:1px solid var(--border);margin-bottom:24px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+.com-detail-banner::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c,var(--okta-red))}
+.com-detail-head{display:flex;align-items:center;gap:18px;margin-bottom:14px}
+.com-detail-num{width:54px;height:54px;border-radius:14px;color:#fff;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center}
+.com-detail-name{font-size:24px;font-weight:900;letter-spacing:-0.5px}
+.com-detail-short{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.com-detail-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-soft);font-weight:600;padding:8px 14px;border:1px solid var(--border);border-radius:8px;margin-bottom:14px;background:#fff}
+.com-detail-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--okta-navy);font-weight:600;padding:6px 12px;background:#F5F7FB;border-radius:6px;margin-top:8px}
+.pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:32px;flex-wrap:wrap}
+.pagination button{padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--text-soft);min-width:38px}
+.pagination button.active{background:var(--okta-navy);color:#fff;border-color:var(--okta-navy)}
+.pagination button:disabled{opacity:0.4}
+footer{padding:32px 0 40px;text-align:center;color:var(--text-light);font-size:12px;border-top:1px solid var(--border);margin-top:60px;background:#fff}
+footer a{color:var(--okta-red);font-weight:600}
+.empty-state{padding:80px 24px;text-align:center;color:var(--text-light)}
+.loading{padding:120px 24px;text-align:center;color:var(--text-light)}
+.loading-spinner{width:40px;height:40px;border:3px solid #E5E9F0;border-top-color:var(--okta-red);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.hero-title{font-size:30px}.brand-tagline{display:none}.com-grid{grid-template-columns:1fr 1fr;gap:10px}.com-card{padding:16px}.member-list{grid-template-columns:1fr}}
+@media(max-width:480px){.com-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="https://www.okta.net/" target="_blank" rel="noopener"><img class="brand-logo-img" src="https://www.okta.net/cmsstore/cmssite/okta/_images/okta_web_logo-210104-1.jpg" alt="OKTA 세계한인경제무역협회"><span class="brand-tagline">통상위원회<br>회원 디렉토리</span></a>
+<div class="header-stats"><span class="pill pill-strong" id="hdrTotal">로딩 중…</span><span class="pill" id="hdrDirectors">-</span><span class="pill" id="hdrCountries">-</span></div>
+</div></header>
+<section class="hero"><div class="container hero-inner">
+<div class="hero-badge">📊 OKTA 회원 디렉토리 · 15개 통상위원회 분과 · 임원진 통합 · Live</div>
+<h1 class="hero-title">전세계 한인 비즈니스를<br><span class="accent">업종별로 한눈에</span></h1>
+<p class="hero-sub">OKTA 세계한인경제무역협회 회원을 15개 통상위원회 분과로 분류한 통합 디렉토리. 제23대 상임이사·지회장·감사 직위까지 한 화면에서 확인하세요. (Google Sheets 실시간 연동)</p>
+<div class="hero-stats">
+<div class="hero-stat"><div class="hero-stat-num" id="heroTotal">-</div><div class="hero-stat-label">전체 회원</div></div>
+<div class="hero-stat"><div class="hero-stat-num" id="heroDirectors">-</div><div class="hero-stat-label">임원진</div></div>
+<div class="hero-stat"><div class="hero-stat-num" id="heroChapterPres">-</div><div class="hero-stat-label">지회장</div></div>
+<div class="hero-stat"><div class="hero-stat-num" id="heroAuditors">-</div><div class="hero-stat-label">감사</div></div>
+<div class="hero-stat"><div class="hero-stat-num">15</div><div class="hero-stat-label">통상 분과</div></div>
+<div class="hero-stat"><div class="hero-stat-num" id="heroCountries">-</div><div class="hero-stat-label">국가</div></div>
+</div>
+</div></section>
+<div class="container"><div class="toolbar">
+<div class="search-wrap"><svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="이름·회사·국가·지회·도시·업종·이메일·직위 검색…"></div>
+<select class="filter-select" id="regionFilter"><option value="">🌐 전체 권역</option></select>
+<select class="filter-select" id="countryFilter"><option value="">📍 전체 국가</option></select>
+<select class="filter-select" id="chapterFilter"><option value="">🏢 전체 지회</option></select>
+<select class="filter-select" id="positionFilter"><option value="">⭐ 전체 직위</option><option value="director">임원진만</option><option value="chapter">지회장</option><option value="honor">명예회장</option><option value="board">이사장단</option><option value="exec">상임집행부</option><option value="audit">감사</option></select>
+<div class="view-toggle"><button id="viewCom" class="active">분과별</button><button id="viewAll">전체 명단</button></div>
+</div></div>
+<main class="container section"><div id="content"><div class="loading"><div class="loading-spinner"></div><p>Google Sheets에서 데이터 불러오는 중…</p></div></div></main>
+<footer><div class="container">
+<p>OKTA 통상위원회 회원 디렉토리 · 데이터 갱신: <span id="genDate">-</span> · <a href="https://www.okta.net/" target="_blank">okta.net</a> · <a href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">통상위원회 안내</a></p>
+</div></footer>
+<script>
+(async function(){
+const FULL_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTJ7cI8A2QRNoZVrf5FxagVCq8SLB9xLqf3Knx4lxf4q56kQYQDW8ecPf0DDoZnlncwD80VWKRxJzqJ/pub?output=csv';
+const DIR_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vScHky-jImor1LT87tYdu8weCC_cW4unzfuLrpfreH6DB_05P0U_-Wn8Wu2nTmb5C6e4lbvKoIW73gF/pub?output=csv';
+const COMMITTEES=[{n:1,name:'리빙 & 뷰티',short:'LIVING&BEAUTY',color:'#E91E63',keywords:['악기','공예','토속','목제','보석','선물','예술용품','도자기','액세서리','시계','안경','완구','비누','샴푸','위생용품','화장실','아기','호신','안전','애완동물용품','애완용품','가구','가정용기','문구','장식','신발','가방','가발','피혁','쥬얼리','ACCESSORY']},{n:2,name:'식음료, 요식업',short:'F&B',color:'#FF5722',keywords:['유제품','농업제품','농산물','가공/건조/냉동','냉동식품','가공식품','가축','음료','커피','차','담배','설탕','제과','베이커리','육류','해산물','수산','곡물','첨가물','식자재','식재료','요식','음식점','식당','주방기구','주방용품','식기','식품','FOOD','RESTAURANT']},{n:3,name:'전기, 전자',short:'ELECTRONICS',color:'#2196F3',keywords:['광학','계측','비디오','카메라','전자수첩','전자사전','전자부품','컴퓨터','전자제품','소프트웨어','SW','주변장치','통신장치','오디오','게임기','게임악세','게임악세사리','IT','사무기기','가전','반도체','전기','전자','소프트','로봇','휴대폰','무선통신']},{n:4,name:'화학, 자원',short:'CHEMICAL',color:'#795548',keywords:['무기화학','유기화학','석유화학','화학물질','염료','안료','페인트','잉크','고무','플라스틱','세제','화약','석탄','석유','가스','접착제','밀봉제','종이','포장재','비료','농화학','왁스','비철금속','광물','철','강철','비철합금','광석','정광','자원','석유 ','석유,','석유는','화학','석유원료']},{n:5,name:'건축, 재활용',short:'CONSTRUCTION',color:'#607D8B',keywords:['건설자재','건축자재','건설','건축','설계','인테리어','재생','재활용','친환경','에너지','폐기물','부동산개발','부동산건설','건자재','시공']},{n:6,name:'호텔, 여행',short:'HOSPITALITY',color:'#FF9800',keywords:['관광','호텔','여행','서비스 용품','호텔용품','리조트','펜션','숙박','관광객','여행사','TRAVEL','HOTEL']},{n:7,name:'건강식품, 미용용품',short:'HEALTH&BEAUTY',color:'#9C27B0',keywords:['약초','의료용구','의료기구','의약원료','의약완제품','건강식품','애완동물식품','애완식품','헬스장비','스포츠 용품','스포츠용품','화장용품','화장품','미용용품','뷰티','BEAUTY','HEALTH','코스메틱','한방','보조제']},{n:8,name:'금융, 법률, 부동산',short:'FINANCE&LAW',color:'#3F51B5',keywords:['법률','회계','은행','증권','보험','프렌차이즈','프랜차이즈','부동산','임대','중계','중개','개발','투자','금융','컨설팅','자산관리','법무','세무','이민']},{n:9,name:'섬유, 섬유제품',short:'TEXTILE',color:'#00BCD4',keywords:['가정용 섬유','가정용섬유','섬유제품','가죽','모피','직물','의류','모자','양말','스카프','패션','어패럴','APPAREL','TEXTILE','FASHION','속옷','원단']},{n:10,name:'물류',short:'LOGISTICS',color:'#4CAF50',keywords:['물류','운송','창고','선적','LOGISTICS','SHIPPING','TRANSPORT','특송','국제운송','복합운송','해운','항공운송']},{n:11,name:'전자상거래',short:'E-COMMERCE',color:'#F44336',keywords:['홈쇼핑','통신판매','종합무역','전자상거래','이커머스','이-커머스','E-COMMERCE','ECOMMERCE','온라인쇼핑','오픈마켓','마켓플레이스','수입','수출','무역','종합']},{n:12,name:'교육, 문화, 리크루팅',short:'EDU&CULTURE',color:'#673AB7',keywords:['출판','교육','문화','에니메이션','애니메이션','광고','이벤트','언론','미디어','학원','강사','콘텐츠','컨텐츠','방송','신문','도서','학교','학습','MEDIA','리크루팅','채용']},{n:13,name:'기계, 공구',short:'MACHINERY',color:'#FFC107',keywords:['공구용품','공구','기계류','배관설비','위성','오토바이','자동차','컨테이너','자전거','선박','자동차부품','기차','승강기','케이블카','산업용전기','발전기','케이블','히터','램프','조명기구','조명','팬','공기정화기','축전기','충전기','산업기계','중장비','농기계','조선']},{n:14,name:'4차산업, 컨텐츠, 플랫폼',short:'NEW-TECH',color:'#009688',keywords:['바이오','IoT','3D프린팅','3D프린터','드론','블록체인','신재생에너지','태양광','풍력','로봇','인공지능','AI','증강현실','AR','VR','빅데이터','BIG DATA','BIGDATA','메타버스','NFT','핀테크','플랫폼','앱개발','스타트업']},{n:15,name:'전시 사업',short:'EXHIBITION',color:'#8BC34A',keywords:['기업회의','포상관광','컨벤션','전시','MICE','박람회','EXPO','TRADE SHOW','전시회','트레이드쇼','쇼케이스']}];
+const FLAGS={"USA":"\u{1F1FA}\u{1F1F8}","U.S.A.":"\u{1F1FA}\u{1F1F8}","CHINA":"\u{1F1E8}\u{1F1F3}","JAPAN":"\u{1F1EF}\u{1F1F5}","KOREA":"\u{1F1F0}\u{1F1F7}","AUSTRALIA":"\u{1F1E6}\u{1F1FA}","CANADA":"\u{1F1E8}\u{1F1E6}","U.K":"\u{1F1EC}\u{1F1E7}","UNITED KINGDOM":"\u{1F1EC}\u{1F1E7}","GERMANY":"\u{1F1E9}\u{1F1EA}","FRANCE":"\u{1F1EB}\u{1F1F7}","ITALIA":"\u{1F1EE}\u{1F1F9}","ITALY":"\u{1F1EE}\u{1F1F9}","SPAIN":"\u{1F1EA}\u{1F1F8}","RUSSIA":"\u{1F1F7}\u{1F1FA}","VIETNAM":"\u{1F1FB}\u{1F1F3}","THAILAND":"\u{1F1F9}\u{1F1ED}","INDIA":"\u{1F1EE}\u{1F1F3}","INDONESIA":"\u{1F1EE}\u{1F1E9}","PHILIPPINES":"\u{1F1F5}\u{1F1ED}","MALAYSIA":"\u{1F1F2}\u{1F1FE}","SINGAPORE":"\u{1F1F8}\u{1F1EC}","HONG KONG":"\u{1F1ED}\u{1F1F0}","TAIWAN":"\u{1F1F9}\u{1F1FC}","MEXICO":"\u{1F1F2}\u{1F1FD}","BRAZIL":"\u{1F1E7}\u{1F1F7}","NEW ZEALAND":"\u{1F1F3}\u{1F1FF}","UZBEKISTAN":"\u{1F1FA}\u{1F1FF}","KAZAKHSTAN":"\u{1F1F0}\u{1F1FF}","KYRGYZSTAN":"\u{1F1F0}\u{1F1EC}","BANGLADESH":"\u{1F1E7}\u{1F1E9}","MYANMAR":"\u{1F1F2}\u{1F1F2}","CAMBODIA":"\u{1F1F0}\u{1F1ED}","SWITZERLAND":"\u{1F1E8}\u{1F1ED}","AUSTRIA":"\u{1F1E6}\u{1F1F9}","NETHERLANDS":"\u{1F1F3}\u{1F1F1}","TURKEY":"\u{1F1F9}\u{1F1F7}","TURKIYE":"\u{1F1F9}\u{1F1F7}","UAE":"\u{1F1E6}\u{1F1EA}","UNITED ARAB EMIRATES":"\u{1F1E6}\u{1F1EA}","CZECH REPUBLIC":"\u{1F1E8}\u{1F1FF}","CZECH REP":"\u{1F1E8}\u{1F1FF}","CZECH":"\u{1F1E8}\u{1F1FF}","PARAGUAY":"\u{1F1F5}\u{1F1FE}","CHILE":"\u{1F1E8}\u{1F1F1}","ARGENTINA":"\u{1F1E6}\u{1F1F7}","PERU":"\u{1F1F5}\u{1F1EA}","NIGERIA":"\u{1F1F3}\u{1F1EC}","SOUTH AFRICA":"\u{1F1FF}\u{1F1E6}","POLAND":"\u{1F1F5}\u{1F1F1}","HUNGARY":"\u{1F1ED}\u{1F1FA}","COSTA RICA":"\u{1F1E8}\u{1F1F7}","DOMINICAN REPUBLIC":"\u{1F1E9}\u{1F1F4}","PANAMA":"\u{1F1F5}\u{1F1E6}","GUATEMALA":"\u{1F1EC}\u{1F1F9}","ECUADOR":"\u{1F1EA}\u{1F1E8}","HONDURAS":"\u{1F1ED}\u{1F1F3}"};
+function flag(c){if(!c)return"\u{1F310}";return FLAGS[c.toUpperCase().trim()]||"\u{1F310}"}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m])}
+function parseCSV(text){const rows=[];let row=[],cell='',inQ=false;for(let i=0;i<text.length;i++){const c=text[i];if(inQ){if(c==='"'){if(text[i+1]==='"'){cell+='"';i++}else inQ=false}else cell+=c}else{if(c==='"')inQ=true;else if(c===','){row.push(cell);cell=''}else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell=''}else if(c==='\r'){}else cell+=c}}if(cell||row.length){row.push(cell);rows.push(row)}return rows}
+function classify(s){if(!s||!s.trim())return[];const t=s.toUpperCase();const m=[];COMMITTEES.forEach(c=>{for(const k of c.keywords){if(t.includes(k.toUpperCase())){m.push(c.n);break}}});return m}
+function gR(c){const M={'USA':'북미주','U.S.A.':'북미주','CANADA':'북미주','CHINA':'중국','HONG KONG':'중국','TAIWAN':'아시아','JAPAN':'일본','AUSTRALIA':'대양주','NEW ZEALAND':'대양주','INDONESIA':'아시아','MALAYSIA':'아시아','SINGAPORE':'아시아','PHILIPPINES':'아시아','VIETNAM':'아시아','THAILAND':'아시아','MYANMAR':'아시아','CAMBODIA':'아시아','INDIA':'아시아','BANGLADESH':'아시아','PAKISTAN':'아시아','LAOS':'아시아','MONGOLIA':'아시아','SRI LANKA':'아시아','NEPAL':'아시아','MEXICO':'중남미','BRAZIL':'중남미','ARGENTINA':'중남미','CHILE':'중남미','PERU':'중남미','PARAGUAY':'중남미','GUATEMALA':'중남미','COSTA RICA':'중남미','DOMINICAN REPUBLIC':'중남미','PANAMA':'중남미','ECUADOR':'중남미','HONDURAS':'중남미','GERMANY':'유럽·유라시아','FRANCE':'유럽·유라시아','ITALIA':'유럽·유라시아','SPAIN':'유럽·유라시아','U.K':'유럽·유라시아','UK':'유럽·유라시아','NETHERLANDS':'유럽·유라시아','SWITZERLAND':'유럽·유라시아','AUSTRIA':'유럽·유라시아','POLAND':'유럽·유라시아','CZECH REPUBLIC':'유럽·유라시아','RUSSIA':'유럽·유라시아','UZBEKISTAN':'유럽·유라시아','KAZAKHSTAN':'유럽·유라시아','TURKEY':'중동·아프리카','TURKIYE':'중동·아프리카','UAE':'중동·아프리카','UNITED ARAB EMIRATES':'중동·아프리카','SOUTH AFRICA':'중동·아프리카','NIGERIA':'중동·아프리카'};return M[(c||'').toUpperCase().trim()]||'기타'}
+function aF(v){return !!(v&&v.trim())}
+function aL(v,d){if(!v||!v.trim())return '';const s=v.trim();return (s==='○'||s==='O'||s==='o')?d:s}
+
+let MEMBERS=[],STATS={};
+const REGIONS=['북미주','북미주서부','북미주동부','중국','일본','아시아','대양주','유럽·유라시아','중동·아프리카','중남미','기타'];
+
+try{
+const [fullRes,dirRes]=await Promise.all([fetch(FULL_URL),fetch(DIR_URL)]);
+const fullCsv=await fullRes.text();
+const dirCsv=await dirRes.text();
+const fullRows=parseCSV(fullCsv),fH=fullRows[0];
+const fullData=fullRows.slice(1).filter(r=>r.length>=4&&r[0]).map(r=>{const o={};fH.forEach((h,i)=>o[h]=(r[i]||'').trim());return o});
+const dirRows=parseCSV(dirCsv),dH=dirRows[0];
+const dByName={},dByEmail={};
+dirRows.slice(1).filter(r=>r.length>=4&&r[0]).forEach(r=>{const o={};dH.forEach((h,i)=>o[h]=(r[i]||'').trim());if(o['이름'])dByName[o['이름']]=o;if(o['이메일'])dByEmail[o['이메일'].toLowerCase()]=o});
+MEMBERS=fullData.map(d=>{const dir=dByName[d['성명']]||dByEmail[(d['이메일']||'').toLowerCase()]||null;const fE=d['23대 임원 직책']||'',fC=d['지회장']||'';const dC=dir?(dir['지회장']||''):'',dHo=dir?(dir['명예회장_회기']||''):'',dB=dir?(dir['이사장단']||''):'',dE=dir?(dir['상임집행부']||''):'',dA=dir?(dir['감사']||''):'';const iCP=aF(fC)||aF(dC),iA=aF(dA),hH=aF(dHo),hB=aF(dB),hE=aF(fE)||aF(dE);const isDir=iCP||iA||hH||hB||hE;return {no:d['번호']||'',country:d['국가']||'',chapter:d['지회']||'',name:d['성명']||'',region:dir?(dir['권역']||gR(d['국가'])):gR(d['국가']),city:dir?(dir['도시']||''):'',company:d['회사명']||'',industry:d['업종']||'',email:d['이메일']||'',pos:{exec_label:aL(dE||fE,'임원'),board_label:aL(dB,'이사'),honor_label:aL(dHo,'명예회장'),audit_label:aL(dA,'감사'),chapter_label:aL(fC||dC,'지회장'),is_chapter_pres:iCP,is_auditor:iA,has_honor:hH,has_board:hB,has_exec:hE},isDirector:isDir,committees:classify(d['업종']||'')}});
+STATS={total:MEMBERS.length,directors:0,chapterPres:0,auditors:0};
+MEMBERS.forEach(m=>{if(m.isDirector)STATS.directors++;if(m.pos.is_chapter_pres)STATS.chapterPres++;if(m.pos.is_auditor)STATS.auditors++});
+}catch(e){
+document.getElementById('content').innerHTML='<div class="empty-state"><h3>데이터 불러오기 실패</h3><p>'+esc(e.message)+'</p><p>Google Sheets URL이 공개 게시되어 있는지 확인해 주세요.</p></div>';
+return;
+}
+
+const cMap={};COMMITTEES.forEach(c=>cMap[c.n]=c);
+const countries={},regions={},chapters={};
+MEMBERS.forEach(m=>{if(m.country)countries[m.country]=(countries[m.country]||0)+1;if(m.region)regions[m.region]=(regions[m.region]||0)+1;if(m.chapter){const k=m.country+' / '+m.chapter;chapters[k]=(chapters[k]||0)+1}});
+document.getElementById('hdrTotal').textContent='전체 '+STATS.total.toLocaleString()+'명';
+document.getElementById('hdrDirectors').textContent='임원 '+STATS.directors+'명';
+document.getElementById('hdrCountries').textContent=Object.keys(countries).length+'개국';
+document.getElementById('heroTotal').textContent=STATS.total.toLocaleString();
+document.getElementById('heroDirectors').textContent=STATS.directors;
+document.getElementById('heroChapterPres').textContent=STATS.chapterPres;
+document.getElementById('heroAuditors').textContent=STATS.auditors;
+document.getElementById('heroCountries').textContent=Object.keys(countries).length;
+document.getElementById('genDate').textContent=new Date().toLocaleString('ko-KR');
+const rf=document.getElementById('regionFilter');REGIONS.forEach(r=>{if(regions[r]){const o=document.createElement('option');o.value=r;o.textContent=r+' ('+regions[r]+')';rf.appendChild(o)}});
+const cf=document.getElementById('countryFilter');Object.keys(countries).sort((a,b)=>countries[b]-countries[a]).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=flag(c)+' '+c+' ('+countries[c]+')';cf.appendChild(o)});
+const chf=document.getElementById('chapterFilter');Object.keys(chapters).sort((a,b)=>chapters[b]-chapters[a]).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c+' ('+chapters[c]+')';chf.appendChild(o)});
+
+const state={view:'committees',search:'',region:'',country:'',chapter:'',position:'',committee:null,page:1,perPage:60};
+function filt(){const q=state.search.toLowerCase().trim();return MEMBERS.filter(m=>{const p=m.pos||{};if(state.region&&m.region!==state.region)return false;if(state.country&&m.country!==state.country)return false;if(state.chapter){if(m.country+' / '+m.chapter!==state.chapter)return false}if(state.position){if(state.position==='director'&&!m.isDirector)return false;if(state.position==='chapter'&&!p.is_chapter_pres)return false;if(state.position==='exec'&&!p.has_exec)return false;if(state.position==='board'&&!p.has_board)return false;if(state.position==='honor'&&!p.has_honor)return false;if(state.position==='audit'&&!p.is_auditor)return false}if(state.committee!==null){if(state.committee===0){if((m.committees||[]).length>0||!m.industry||!m.industry.trim())return false}else{if(!(m.committees||[]).includes(state.committee))return false}}if(q){const b=(m.no+' '+m.name+' '+m.region+' '+m.country+' '+m.chapter+' '+m.city+' '+m.industry+' '+m.company+' '+m.email+' '+(p.exec_label+' '+p.board_label+' '+p.honor_label+' '+p.audit_label+' '+p.chapter_label)).toLowerCase();if(!b.includes(q))return false}return true})}
+function rCom(){const f=filt();const counts={};COMMITTEES.forEach(c=>counts[c.n]=0);f.forEach(m=>(m.committees||[]).forEach(n=>counts[n]++));const topC={};COMMITTEES.forEach(c=>{const cs={};f.filter(m=>(m.committees||[]).includes(c.n)).forEach(m=>{if(m.country)cs[m.country]=(cs[m.country]||0)+1});topC[c.n]=Object.keys(cs).sort((a,b)=>cs[b]-cs[a]).slice(0,4)});let h='<div class="section-head"><h2 class="section-title">15개 통상위원회 분과</h2><span class="section-meta">필터 결과 '+f.length.toLocaleString()+'명 · 분과 클릭 시 회원 표시</span></div><div class="com-grid">';COMMITTEES.forEach(c=>{const fl=topC[c.n].map(co=>'<span class="com-flag">'+flag(co)+' '+co+'</span>').join('');h+='<div class="com-card" data-com="'+c.n+'" style="--c:'+c.color+'"><div class="com-card-head"><div class="com-num">'+c.n+'</div><div><span class="com-count-num">'+counts[c.n].toLocaleString()+'</span><span class="com-count-lbl">명</span></div></div><div class="com-name">'+esc(c.name)+'</div><div class="com-short">'+esc(c.short)+'</div>'+(fl?'<div class="com-flags">'+fl+'</div>':'')+'</div>'});h+='</div>';document.getElementById('content').innerHTML=h;document.querySelectorAll('.com-card').forEach(el=>el.onclick=()=>{state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})})}
+function posBadges(p){if(!p)return'';const out=[];if(p.honor_label)out.push('<span class="mc-position honor">'+esc(p.honor_label)+'</span>');if(p.board_label)out.push('<span class="mc-position board">'+esc(p.board_label)+'</span>');if(p.exec_label)out.push('<span class="mc-position exec">'+esc(p.exec_label)+'</span>');if(p.is_auditor)out.push('<span class="mc-position audit">'+esc(p.audit_label||'감사')+'</span>');if(p.is_chapter_pres)out.push('<span class="mc-position chapter">📍 '+esc(p.chapter_label||'지회장')+'</span>');return out.length?'<div class="mc-positions">'+out.join('')+'</div>':''}
+function mCard(m){const t=(m.committees||[]).map(n=>{const c=cMap[n];return '<span class="mc-tag" data-com="'+n+'" style="--tc:'+c.color+'">'+n+' '+esc(c.name)+'</span>'}).join('');return '<div class="member-card'+(m.isDirector?' is-director':'')+'"><div class="mc-row1"><div class="mc-name">'+esc(m.name||'-')+'</div><div class="mc-loc"><span class="mc-loc-region">'+esc(m.region||'')+'</span>'+flag(m.country)+' '+esc(m.country)+(m.chapter?' / '+esc(m.chapter):'')+'</div></div>'+posBadges(m.pos)+(m.company?'<div class="mc-company">🏢 '+esc(m.company)+'</div>':'')+(m.industry?'<div class="mc-industry">📋 '+esc(m.industry)+'</div>':'')+(t?'<div class="mc-tags">'+t+'</div>':'')+(m.email?'<a class="mc-email" href="mailto:'+esc(m.email)+'">✉️ '+esc(m.email)+'</a>':'')+'</div>'}
+function rMem(){const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));if(state.page>tp)state.page=tp;const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);let h='';if(state.view==='memberDetail'&&state.committee!==null){const c=state.committee===0?null:cMap[state.committee];const col=c?c.color:'#5A6478';const nm=c?c.name:'기타 (미분류)';const sh=c?c.short:'OTHERS';const nu=c?c.n:'?';h+='<button class="com-detail-back" onclick="window._back()">← 분과 목록으로</button>';h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:'+col+'">'+nu+'</div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 통상위원회 공식 페이지에서 임원진 보기</a>':'')+'</div>'}h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'전체 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}else{h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';if(tp>1){h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>'}}document.getElementById('content').innerHTML=h;document.querySelectorAll('.mc-tag').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})})}
+function render(){document.getElementById('viewCom').classList.toggle('active',state.view==='committees');document.getElementById('viewAll').classList.toggle('active',state.view==='all');if(state.view==='committees')rCom();else rMem()}
+window._back=()=>{state.view='committees';state.committee=null;state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})};
+document.getElementById('viewCom').onclick=()=>{state.view='committees';state.committee=null;state.page=1;render()};
+document.getElementById('viewAll').onclick=()=>{state.view='all';state.committee=null;state.page=1;render()};
+let st;document.getElementById('searchInput').addEventListener('input',e=>{clearTimeout(st);st=setTimeout(()=>{state.search=e.target.value;state.page=1;render()},200)});
+document.getElementById('regionFilter').onchange=e=>{state.region=e.target.value;state.page=1;render()};
+document.getElementById('countryFilter').onchange=e=>{state.country=e.target.value;state.page=1;render()};
+document.getElementById('chapterFilter').onchange=e=>{state.chapter=e.target.value;state.page=1;render()};
+document.getElementById('positionFilter').onchange=e=>{state.position=e.target.value;state.page=1;render()};
+render();
+})();
+</script>
+</body></html>
