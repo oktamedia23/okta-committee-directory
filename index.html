@@ -18,7 +18,7 @@ a{color:inherit;text-decoration:none}
 input,select{font-family:inherit;font-size:14px}
 .container{max-width:1440px;margin:0 auto;padding:0 28px}
 img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;display:inline-block}
-.country-chip-flag img.emoji{height:1.4em;width:1.4em;vertical-align:-0.3em}
+.country-chip-flag img.emoji,.industry-chip-emoji img.emoji{height:1.4em;width:1.4em;vertical-align:-0.3em}
 .mc-loc-flag img.emoji{height:1.5em;width:1.5em;vertical-align:-0.2em}
 .com-flag-big-emoji img.emoji{height:1.3em;width:1.3em}
 .cat-emoji img.emoji{height:1em;width:1em}
@@ -31,7 +31,7 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .header-stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .pill{padding:7px 14px;background:#F4F6FB;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:700;color:var(--text-soft);white-space:nowrap}
 .pill-strong{background:linear-gradient(135deg,var(--okta-red),var(--okta-red-dark));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(200,16,46,0.3)}
-.hero{background:linear-gradient(135deg,var(--okta-navy) 0%,#162456 50%,#0a1430 100%);color:#fff;padding:72px 0 116px;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--okta-navy) 0%,#162456 50%,#0a1430 100%);color:#fff;padding:64px 0 144px;position:relative;overflow:hidden}
 .hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
 .hero::before{content:'';position:absolute;top:-30%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(255,107,53,0.35) 0%,transparent 60%);border-radius:50%;animation:float 20s ease-in-out infinite}
 .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(242,168,37,0.25) 0%,transparent 60%);border-radius:50%;animation:float 25s ease-in-out infinite reverse}
@@ -40,32 +40,37 @@ img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;di
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:0.5px;margin-bottom:24px;text-transform:uppercase}
 .hero-badge::before{content:'';width:8px;height:8px;background:#10F087;border-radius:50%;box-shadow:0 0 12px #10F087;animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero-title{font-size:56px;font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:20px}
+.hero-title{font-size:54px;font-weight:900;letter-spacing:-2.4px;line-height:1.05;margin-bottom:18px}
 .hero-title .accent{background:linear-gradient(135deg,var(--okta-gold) 0%,var(--okta-yellow) 50%,var(--okta-orange) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
-.hero-sub{font-size:18px;opacity:0.85;font-weight:400;max-width:760px;line-height:1.65}
-.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;margin-top:44px;max-width:1100px}
-.hero-stat{display:flex;flex-direction:column;gap:4px;padding:18px 0;border-left:3px solid rgba(255,255,255,0.15);padding-left:18px;transition:all 0.2s}
+.hero-sub{font-size:17px;opacity:0.85;font-weight:400;max-width:760px;line-height:1.65}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:18px;margin-top:32px;max-width:1100px}
+.hero-stat{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-left:3px solid rgba(255,255,255,0.15);padding-left:16px;transition:all 0.2s}
 .hero-stat:hover{border-left-color:var(--okta-gold);transform:translateX(2px)}
-.hero-stat-num{font-size:38px;font-weight:900;letter-spacing:-1.5px;line-height:1}
-.hero-stat-label{font-size:11px;opacity:0.7;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:6px}
-.top-countries{margin-top:36px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.12);position:relative;z-index:1}
-.top-countries-label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
-.top-countries-list{display:flex;gap:10px;flex-wrap:wrap}
-.country-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;font-size:13px;font-weight:600;backdrop-filter:blur(10px);transition:all 0.15s;color:#fff}
-.country-chip:hover{background:rgba(255,255,255,0.18);transform:translateY(-2px);border-color:rgba(255,255,255,0.3)}
-.country-chip-flag{font-size:18px;line-height:1;display:inline-flex;align-items:center}
-.country-chip-count{font-size:11px;font-weight:800;color:#fff;background:rgba(242,168,37,0.4);padding:2px 8px;border-radius:999px}
-.toolbar{margin-top:-56px;position:relative;z-index:5;background:#fff;border-radius:20px;padding:22px 26px;box-shadow:var(--shadow-xl);border:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.search-wrap{flex:1;min-width:260px;position:relative}
-.search-wrap input{width:100%;padding:14px 18px 14px 46px;border:1.5px solid var(--border);border-radius:12px;background:#F4F6FB;font-size:14px;outline:none;font-weight:500;transition:all 0.15s}
+.hero-stat-num{font-size:34px;font-weight:900;letter-spacing:-1.5px;line-height:1}
+.hero-stat-label{font-size:11px;opacity:0.7;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+.hero-section-label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.hero-section{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.12);position:relative;z-index:1}
+.industry-list,.country-list{display:flex;gap:9px;flex-wrap:wrap}
+.industry-chip,.country-chip{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:999px;font-size:13px;font-weight:700;backdrop-filter:blur(10px);transition:all 0.18s;color:#fff}
+.industry-chip:hover,.country-chip:hover{background:rgba(255,255,255,0.22);transform:translateY(-2px);border-color:rgba(255,255,255,0.4);box-shadow:0 6px 16px rgba(0,0,0,0.2)}
+.industry-chip-emoji,.country-chip-flag{font-size:18px;line-height:1;display:inline-flex;align-items:center}
+.industry-chip-count,.country-chip-count{font-size:11px;font-weight:800;color:#fff;background:rgba(242,168,37,0.4);padding:2px 8px;border-radius:999px}
+.toolbar{margin-top:-72px;position:relative;z-index:5;background:#fff;border-radius:20px;padding:22px 26px;box-shadow:var(--shadow-xl);border:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.search-wrap{flex:1;min-width:300px;position:relative}
+.search-wrap input{width:100%;padding:16px 18px 16px 52px;border:1.5px solid var(--border);border-radius:14px;background:#F4F6FB;font-size:15px;outline:none;font-weight:600;transition:all 0.15s}
+.search-wrap input::placeholder{color:var(--text-light);font-weight:500}
 .search-wrap input:focus{border-color:var(--okta-red);background:#fff;box-shadow:var(--shadow-glow)}
-.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text-light)}
+.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--okta-red)}
 .filter-select{padding:14px 40px 14px 16px;border:1.5px solid var(--border);border-radius:12px;background:#F4F6FB url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%235A6478' d='M5 6L0 0h10z'/%3E%3C/svg%3E") no-repeat right 16px center;-webkit-appearance:none;appearance:none;font-weight:600;color:var(--text);min-width:150px;cursor:pointer;outline:none;transition:all 0.15s}
 .filter-select:hover{border-color:var(--border-strong);background-color:#fff}
 .filter-select:focus{border-color:var(--okta-red);background-color:#fff;box-shadow:var(--shadow-glow)}
 .view-toggle{display:flex;background:#F4F6FB;border:1.5px solid var(--border);border-radius:12px;padding:3px}
 .view-toggle button{padding:11px 18px;font-size:13px;font-weight:700;color:var(--text-soft);border-radius:9px;transition:all 0.15s}
 .view-toggle button.active{background:#fff;color:var(--okta-navy);box-shadow:var(--shadow-sm)}
+.search-suggestions{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%}
+.search-suggestions-label{font-size:11px;color:var(--text-light);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-right:4px}
+.suggestion-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#F4F6FB;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all 0.15s}
+.suggestion-chip:hover{background:#fff;border-color:var(--okta-red);color:var(--okta-red);transform:translateY(-1px)}
 .section{padding:48px 0 80px}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px}
 .section-title{font-size:26px;font-weight:900;letter-spacing:-0.8px}
@@ -148,8 +153,8 @@ footer a:hover{text-decoration:underline}
 .loading-spinner{width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--okta-red);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 20px}
 .loading p{font-size:15px;font-weight:600}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:768px){.hero{padding:48px 0 88px}.hero-title{font-size:36px}.brand-tagline{display:none}.container{padding:0 16px}.header-inner{padding:12px 16px}.toolbar{padding:16px;flex-direction:column;align-items:stretch;gap:8px}.search-wrap,.filter-select,.view-toggle{width:100%;min-width:0}.com-grid{grid-template-columns:1fr 1fr;gap:12px}.com-card{padding:18px}.com-num{width:44px;height:44px;font-size:22px}.com-name{font-size:15px}.com-count-num{font-size:24px}.member-list{grid-template-columns:1fr}.hero-stat-num{font-size:28px}.top-countries-list{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}}
-@media(max-width:480px){.com-grid{grid-template-columns:1fr}.hero-title{font-size:28px}.section-title{font-size:20px}}
+@media(max-width:768px){.hero{padding:48px 0 110px}.hero-title{font-size:34px}.brand-tagline{display:none}.container{padding:0 16px}.header-inner{padding:12px 16px}.toolbar{padding:16px;flex-direction:column;align-items:stretch;gap:8px}.search-wrap,.filter-select,.view-toggle{width:100%;min-width:0}.com-grid{grid-template-columns:1fr 1fr;gap:12px}.com-card{padding:18px}.com-num{width:44px;height:44px;font-size:22px}.com-name{font-size:15px}.com-count-num{font-size:24px}.member-list{grid-template-columns:1fr}.hero-stat-num{font-size:26px}.industry-list,.country-list{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}}
+@media(max-width:480px){.com-grid{grid-template-columns:1fr}.hero-title{font-size:26px}.section-title{font-size:20px}}
 </style>
 </head>
 <body>
@@ -163,7 +168,7 @@ footer a:hover{text-decoration:underline}
 <div class="container hero-inner">
 <div class="hero-badge">LIVE · Google Sheets 실시간 연동</div>
 <h1 class="hero-title">전세계 한인 비즈니스를<br><span class="accent">업종별로 한눈에</span></h1>
-<p class="hero-sub">OKTA 세계한인경제무역협회 회원을 업종별로 분류한 디렉토리. 같은 업종 회원과 통상위원회 추천을 한눈에 확인하세요.</p>
+<p class="hero-sub">같은 업종 회원을 찾고, 추천 통상위원회로 자연스럽게 연결되세요. 5,000여 명의 OKTA 회원을 업종별로 검색·탐색할 수 있습니다.</p>
 <div class="hero-stats">
 <div class="hero-stat"><div class="hero-stat-num" id="heroTotal" data-target="0">0</div><div class="hero-stat-label">전체 회원</div></div>
 <div class="hero-stat"><div class="hero-stat-num" id="heroDirectors" data-target="0">0</div><div class="hero-stat-label">임원진</div></div>
@@ -171,19 +176,36 @@ footer a:hover{text-decoration:underline}
 <div class="hero-stat"><div class="hero-stat-num" id="heroCategories" data-target="0">0</div><div class="hero-stat-label">업종</div></div>
 <div class="hero-stat"><div class="hero-stat-num" id="heroCountries" data-target="0">0</div><div class="hero-stat-label">활동 국가</div></div>
 </div>
-<div class="top-countries">
-<div class="top-countries-label">🌐 회원이 가장 많은 국가</div>
-<div class="top-countries-list" id="topCountriesList"></div>
+<div class="hero-section">
+<div class="hero-section-label">🔥 회원이 가장 많은 업종 TOP 8</div>
+<div class="industry-list" id="topIndustriesList"></div>
+</div>
+<div class="hero-section">
+<div class="hero-section-label">🌐 회원이 가장 많은 국가 TOP 10</div>
+<div class="country-list" id="topCountriesList"></div>
 </div>
 </div></section>
 
 <div class="container"><div class="toolbar">
-<div class="search-wrap"><svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="이름·회사·국가·지회·도시·업종·이메일·직위 검색…"></div>
+<div class="search-wrap"><svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="searchInput" placeholder="업종으로 검색  ·  예) 화장품, 식품, IT, 물류, 부동산, 자동차..."></div>
 <select class="filter-select" id="regionFilter"><option value="">🌐 전체 권역</option></select>
 <select class="filter-select" id="countryFilter"><option value="">📍 전체 국가</option></select>
 <select class="filter-select" id="chapterFilter"><option value="">🏢 전체 지회</option></select>
 <select class="filter-select" id="positionFilter"><option value="">⭐ 전체 직위</option><option value="director">임원진만</option><option value="chapter">지회장</option><option value="honor">명예회장</option><option value="board">이사장단</option><option value="exec">상임집행부</option><option value="audit">감사</option></select>
 <div class="view-toggle"><button id="viewCom" class="active">업종별</button><button id="viewAll">전체 명단</button></div>
+<div class="search-suggestions">
+<span class="search-suggestions-label">빠른 검색:</span>
+<button class="suggestion-chip" data-q="화장품">💄 화장품</button>
+<button class="suggestion-chip" data-q="식품">🍱 식품</button>
+<button class="suggestion-chip" data-q="IT">💻 IT</button>
+<button class="suggestion-chip" data-q="물류">🚚 물류</button>
+<button class="suggestion-chip" data-q="건설">🏗️ 건설</button>
+<button class="suggestion-chip" data-q="부동산">🏦 부동산</button>
+<button class="suggestion-chip" data-q="자동차">🚗 자동차</button>
+<button class="suggestion-chip" data-q="호텔">🏨 호텔</button>
+<button class="suggestion-chip" data-q="전자상거래">🛍️ 전자상거래</button>
+<button class="suggestion-chip" data-q="화학">⚗️ 화학</button>
+</div>
 </div></div>
 
 <main class="container section"><div id="content"><div class="loading"><div class="loading-spinner"></div><p>Google Sheets에서 데이터 불러오는 중…</p></div></div></main>
@@ -199,7 +221,6 @@ function twemojify(){if(typeof twemoji!=='undefined'){twemoji.parse(document.bod
 const FULL_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTJ7cI8A2QRNoZVrf5FxagVCq8SLB9xLqf3Knx4lxf4q56kQYQDW8ecPf0DDoZnlncwD80VWKRxJzqJ/pub?output=csv';
 const DIR_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vScHky-jImor1LT87tYdu8weCC_cW4unzfuLrpfreH6DB_05P0U_-Wn8Wu2nTmb5C6e4lbvKoIW73gF/pub?output=csv';
 
-// OUR business categories (priority order: longest/most specific first within each)
 const CATEGORIES=[
  {n:1,emoji:'🛒',name:'종합무역/유통',short:'TRADE',color:'#F44336',ts:11,keywords:['종합무역','수출입','수출','수입','무역','도매','소매','유통','종합']},
  {n:2,emoji:'🍱',name:'식품/요식업',short:'F&B',color:'#FF5722',ts:2,keywords:['가공/건조/냉동식품','가공식품','냉동식품','농산물','농업제품','수산물','해산물','유제품','음식점','식자재','식재료','요식업','식품','식기','주방용품','주방기구','베이커리','제과','커피','음료','담배','곡물','육류','요식','식당','메뉴']},
@@ -222,7 +243,6 @@ const CATEGORIES=[
  {n:19,emoji:'🌾',name:'농수산/축산',short:'AGRI',color:'#689F38',ts:2,keywords:['농업','농산물','축산','가축','수산','어업']},
  {n:20,emoji:'⚙️',name:'기타/서비스',short:'OTHER',color:'#607D8B',ts:0,keywords:['서비스','기타']}
 ];
-// Sort each category's keywords by length descending for accurate matching
 CATEGORIES.forEach(c=>c.keywords.sort((a,b)=>b.length-a.length));
 
 const TONGSANG_NAMES={1:'리빙 & 뷰티',2:'식음료, 요식업',3:'전기, 전자',4:'화학, 자원',5:'건축, 재활용',6:'호텔, 여행',7:'건강식품, 미용용품',8:'금융, 법률, 부동산',9:'섬유, 섬유제품',10:'물류',11:'전자상거래',12:'교육, 문화, 리크루팅',13:'기계, 공구',14:'4차산업, 컨텐츠, 플랫폼',15:'전시 사업'};
@@ -234,22 +254,17 @@ function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&l
 function initials(name){if(!name)return'?';const t=name.trim();if(/[ㄱ-ㆎ가-힣]/.test(t))return t.slice(0,1);const p=t.split(/\s+/);if(p.length>=2)return (p[0][0]+p[p.length-1][0]).toUpperCase();return t.slice(0,2).toUpperCase()}
 function parseCSV(text){const rows=[];let row=[],cell='',inQ=false;for(let i=0;i<text.length;i++){const c=text[i];if(inQ){if(c==='"'){if(text[i+1]==='"'){cell+='"';i++}else inQ=false}else cell+=c}else{if(c==='"')inQ=true;else if(c===','){row.push(cell);cell=''}else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell=''}else if(c==='\r'){}else cell+=c}}if(cell||row.length){row.push(cell);rows.push(row)}return rows}
 
-// SMART TOKEN-BASED CLASSIFICATION
-// Split industry text into tokens, then match each token to a category by longest keyword match
 function classify(industry){
   if(!industry||!industry.trim())return [];
   const text=industry.trim();
-  // Tokenize: split by separators
   const tokens=text.split(/[,，、/\s]+/).filter(t=>t.length>0);
   const matched=new Set();
-  // Try each token first (preferred - cleaner match)
   tokens.forEach(token=>{
     const tu=token.toUpperCase();
     let bestCat=null,bestKwLen=0;
     CATEGORIES.forEach(c=>{
       for(const kw of c.keywords){
         const ku=kw.toUpperCase();
-        // Exact match or token contains the keyword
         if(tu===ku||tu.includes(ku)){
           if(kw.length>bestKwLen){bestCat=c.n;bestKwLen=kw.length}
           break
@@ -258,12 +273,11 @@ function classify(industry){
     });
     if(bestCat)matched.add(bestCat);
   });
-  // Also check whole text for compound matches (e.g. "건강식품/화장품")
   const fullU=text.toUpperCase();
   CATEGORIES.forEach(c=>{
     if(matched.has(c.n))return;
     for(const kw of c.keywords){
-      if(kw.length<2)continue; // skip 1-char keywords for whole text match
+      if(kw.length<2)continue;
       if(fullU.includes(kw.toUpperCase())){matched.add(c.n);break}
     }
   });
@@ -298,8 +312,10 @@ const cMap={};CATEGORIES.forEach(c=>cMap[c.n]=c);
 const countries={},regions={},chapters={};
 MEMBERS.forEach(m=>{if(m.country)countries[m.country]=(countries[m.country]||0)+1;if(m.region)regions[m.region]=(regions[m.region]||0)+1;if(m.chapter){const k=m.country+' / '+m.chapter;chapters[k]=(chapters[k]||0)+1}});
 
-// Count active categories (>= 1 member)
-const activeCats=CATEGORIES.filter(c=>MEMBERS.some(m=>(m.categories||[]).includes(c.n))).length;
+// Active categories with counts
+const catCounts={};CATEGORIES.forEach(c=>catCounts[c.n]=0);
+MEMBERS.forEach(m=>(m.categories||[]).forEach(n=>catCounts[n]++));
+const activeCats=CATEGORIES.filter(c=>catCounts[c.n]>0).length;
 
 document.getElementById('hdrTotal').textContent='전체 '+STATS.total.toLocaleString()+'명';
 document.getElementById('hdrDirectors').textContent='임원 '+STATS.directors+'명';
@@ -311,8 +327,15 @@ animateCounter(document.getElementById('heroCategories'),activeCats);
 animateCounter(document.getElementById('heroCountries'),Object.keys(countries).length);
 document.getElementById('genDate').textContent=new Date().toLocaleString('ko-KR');
 
+// Top INDUSTRIES strip
+const topIndList=document.getElementById('topIndustriesList');
+const topInds=CATEGORIES.filter(c=>catCounts[c.n]>0).sort((a,b)=>catCounts[b.n]-catCounts[a.n]).slice(0,8);
+topIndList.innerHTML=topInds.map(c=>'<button class="industry-chip" data-cat="'+c.n+'"><span class="industry-chip-emoji">'+c.emoji+'</span><span>'+esc(c.name)+'</span><span class="industry-chip-count">'+catCounts[c.n]+'</span></button>').join('');
+topIndList.querySelectorAll('.industry-chip').forEach(el=>el.onclick=()=>{state.committee=parseInt(el.dataset.cat);state.view='memberDetail';state.search='';document.getElementById('searchInput').value='';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});
+
+// Top countries strip
 const topList=document.getElementById('topCountriesList');
-const topCountries=Object.keys(countries).sort((a,b)=>countries[b]-countries[a]).slice(0,12);
+const topCountries=Object.keys(countries).sort((a,b)=>countries[b]-countries[a]).slice(0,10);
 topList.innerHTML=topCountries.map(c=>'<button class="country-chip" data-country="'+esc(c)+'"><span class="country-chip-flag">'+flag(c)+'</span><span>'+esc(c)+'</span><span class="country-chip-count">'+countries[c]+'</span></button>').join('');
 topList.querySelectorAll('.country-chip').forEach(el=>el.onclick=()=>{state.country=el.dataset.country;document.getElementById('countryFilter').value=el.dataset.country;state.view='all';state.committee=null;state.page=1;render();window.scrollTo({top:document.querySelector('.section').offsetTop-80,behavior:'smooth'})});
 
@@ -324,18 +347,20 @@ twemojify();
 
 const state={view:'committees',search:'',region:'',country:'',chapter:'',position:'',committee:null,page:1,perPage:60};
 
-function filt(){const q=state.search.toLowerCase().trim();return MEMBERS.filter(m=>{const p=m.pos||{};if(state.region&&m.region!==state.region)return false;if(state.country&&m.country!==state.country)return false;if(state.chapter){if(m.country+' / '+m.chapter!==state.chapter)return false}if(state.position){if(state.position==='director'&&!m.isDirector)return false;if(state.position==='chapter'&&!p.is_chapter_pres)return false;if(state.position==='exec'&&!p.has_exec)return false;if(state.position==='board'&&!p.has_board)return false;if(state.position==='honor'&&!p.has_honor)return false;if(state.position==='audit'&&!p.is_auditor)return false}if(state.committee!==null){if(state.committee===0){if((m.categories||[]).length>0||!m.industry||!m.industry.trim())return false}else{if(!(m.categories||[]).includes(state.committee))return false}}if(q){const b=(m.no+' '+m.name+' '+m.region+' '+m.country+' '+m.chapter+' '+m.city+' '+m.industry+' '+m.company+' '+m.email+' '+(p.exec_label+' '+p.board_label+' '+p.honor_label+' '+p.audit_label+' '+p.chapter_label)).toLowerCase();if(!b.includes(q))return false}return true})}
+function filt(){const q=state.search.toLowerCase().trim();return MEMBERS.filter(m=>{const p=m.pos||{};if(state.region&&m.region!==state.region)return false;if(state.country&&m.country!==state.country)return false;if(state.chapter){if(m.country+' / '+m.chapter!==state.chapter)return false}if(state.position){if(state.position==='director'&&!m.isDirector)return false;if(state.position==='chapter'&&!p.is_chapter_pres)return false;if(state.position==='exec'&&!p.has_exec)return false;if(state.position==='board'&&!p.has_board)return false;if(state.position==='honor'&&!p.has_honor)return false;if(state.position==='audit'&&!p.is_auditor)return false}if(state.committee!==null){if(state.committee===0){if((m.categories||[]).length>0||!m.industry||!m.industry.trim())return false}else{if(!(m.categories||[]).includes(state.committee))return false}}if(q){
+  // Industry-first search: also include category names so "화장품" matches members in 화장품/뷰티 cat even if their text says "화장용품"
+  const catNames=(m.categories||[]).map(n=>cMap[n]?cMap[n].name+' '+cMap[n].keywords.join(' '):'').join(' ');
+  const b=(m.no+' '+m.name+' '+m.region+' '+m.country+' '+m.chapter+' '+m.city+' '+m.industry+' '+m.company+' '+m.email+' '+catNames+' '+(p.exec_label+' '+p.board_label+' '+p.honor_label+' '+p.audit_label+' '+p.chapter_label)).toLowerCase();if(!b.includes(q))return false}return true})}
 
 function rCom(){
   const f=filt();
   const counts={};CATEGORIES.forEach(c=>counts[c.n]=0);
   f.forEach(m=>(m.categories||[]).forEach(n=>counts[n]++));
   const topC={};CATEGORIES.forEach(c=>{const cs={};f.filter(m=>(m.categories||[]).includes(c.n)).forEach(m=>{if(m.country)cs[m.country]=(cs[m.country]||0)+1});topC[c.n]=Object.keys(cs).sort((a,b)=>cs[b]-cs[a]).slice(0,4).map(co=>({co,count:cs[co]}))});
-  // FILTER: when active filters/search, show only categories with members
   const hasFilter=state.search||state.region||state.country||state.chapter||state.position;
-  const visibleCats=hasFilter?CATEGORIES.filter(c=>counts[c.n]>0).sort((a,b)=>counts[b.n]-counts[a.n]):CATEGORIES.filter(c=>counts[c.n]>0||!hasFilter).sort((a,b)=>counts[b.n]-counts[a.n]);
-  let h='<div class="section-head"><h2 class="section-title">업종별 회원 분포</h2><span class="section-meta">'+(hasFilter?'필터 결과 '+f.length.toLocaleString()+'명 · '+visibleCats.length+'개 업종':f.length.toLocaleString()+'명 · '+visibleCats.length+'개 업종 · 클릭 시 회원 표시')+'</span></div>';
-  if(visibleCats.length===0){h+='<div class="empty-state"><h3>일치하는 업종이 없습니다</h3><p>다른 검색어 또는 필터를 시도해 보세요.</p></div>';document.getElementById('content').innerHTML=h;return}
+  const visibleCats=CATEGORIES.filter(c=>counts[c.n]>0).sort((a,b)=>counts[b.n]-counts[a.n]);
+  let h='<div class="section-head"><h2 class="section-title">'+(hasFilter?'🔍 검색 결과 업종':'업종별 회원 분포')+'</h2><span class="section-meta">'+(hasFilter?f.length.toLocaleString()+'명 매칭 · '+visibleCats.length+'개 업종에 분포':f.length.toLocaleString()+'명 · '+visibleCats.length+'개 업종 · 카드 클릭 시 회원 표시')+'</span></div>';
+  if(visibleCats.length===0){h+='<div class="empty-state"><h3>일치하는 업종이 없습니다</h3><p>다른 검색어를 시도해 보세요. 예: 화장품, 식품, IT, 물류, 부동산</p></div>';document.getElementById('content').innerHTML=h;return}
   h+='<div class="com-grid">';
   visibleCats.forEach(c=>{
     const fl=topC[c.n].map(x=>'<span class="com-flag-big"><span class="com-flag-big-emoji">'+flag(x.co)+'</span>'+esc(x.co)+'<span class="com-flag-big-count">'+x.count+'</span></span>').join('');
@@ -349,58 +374,26 @@ function rCom(){
 
 function posBadges(p){if(!p)return'';const out=[];if(p.honor_label)out.push('<span class="mc-position honor">👑 '+esc(p.honor_label)+'</span>');if(p.board_label)out.push('<span class="mc-position board">💼 '+esc(p.board_label)+'</span>');if(p.exec_label)out.push('<span class="mc-position exec">⚡ '+esc(p.exec_label)+'</span>');if(p.is_auditor)out.push('<span class="mc-position audit">🔍 '+esc(p.audit_label||'감사')+'</span>');if(p.is_chapter_pres)out.push('<span class="mc-position chapter">📍 '+esc(p.chapter_label||'지회장')+'</span>');return out.length?'<div class="mc-positions">'+out.join('')+'</div>':''}
 
-function tongsangSuggestion(cats){
-  if(!cats||cats.length===0)return '';
-  // Use the first matched category's recommended 통상
-  const tsSet=new Set();
-  cats.forEach(n=>{const c=cMap[n];if(c&&c.ts>0)tsSet.add(c.ts)});
-  if(tsSet.size===0)return '';
-  const tsList=Array.from(tsSet).slice(0,2).map(ts=>'#'+ts+' '+TONGSANG_NAMES[ts]).join(' · ');
-  return '<div class="mc-tongsang"><span class="mc-tongsang-label">추천 통상</span><a class="mc-tongsang-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">'+esc(tsList)+'</a></div>';
-}
+function tongsangSuggestion(cats){if(!cats||cats.length===0)return '';const tsSet=new Set();cats.forEach(n=>{const c=cMap[n];if(c&&c.ts>0)tsSet.add(c.ts)});if(tsSet.size===0)return '';const tsList=Array.from(tsSet).slice(0,2).map(ts=>'#'+ts+' '+TONGSANG_NAMES[ts]).join(' · ');return '<div class="mc-tongsang"><span class="mc-tongsang-label">추천 통상</span><a class="mc-tongsang-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">'+esc(tsList)+'</a></div>'}
 
-function mCard(m){
-  const t=(m.categories||[]).map(n=>{const c=cMap[n];return '<span class="mc-cat" data-com="'+n+'" style="--tc:'+c.color+'"><span class="cat-emoji">'+c.emoji+'</span>'+esc(c.name)+'</span>'}).join('');
-  const ini=initials(m.name);
-  return '<div class="member-card'+(m.isDirector?' is-director':'')+'"><div class="mc-head"><div class="mc-avatar">'+esc(ini)+'</div><div class="mc-info"><div class="mc-name-row"><div class="mc-name">'+esc(m.name||'-')+'</div><div class="mc-loc-flag">'+flag(m.country)+'</div></div><div class="mc-loc-text">'+(m.region?'<span class="mc-loc-region-badge">'+esc(m.region)+'</span>':'')+esc(m.country)+(m.chapter?' · '+esc(m.chapter):'')+'</div></div></div>'+posBadges(m.pos)+(m.company?'<div class="mc-company">🏢 '+esc(m.company)+'</div>':'')+(m.industry?'<div class="mc-industry">📋 '+esc(m.industry)+'</div>':'')+(t?'<div class="mc-cats">'+t+'</div>':'')+tongsangSuggestion(m.categories)+(m.email?'<a class="mc-email" href="mailto:'+esc(m.email)+'">✉️ '+esc(m.email)+'</a>':'')+'</div>';
-}
+function mCard(m){const t=(m.categories||[]).map(n=>{const c=cMap[n];return '<span class="mc-cat" data-com="'+n+'" style="--tc:'+c.color+'"><span class="cat-emoji">'+c.emoji+'</span>'+esc(c.name)+'</span>'}).join('');const ini=initials(m.name);return '<div class="member-card'+(m.isDirector?' is-director':'')+'"><div class="mc-head"><div class="mc-avatar">'+esc(ini)+'</div><div class="mc-info"><div class="mc-name-row"><div class="mc-name">'+esc(m.name||'-')+'</div><div class="mc-loc-flag">'+flag(m.country)+'</div></div><div class="mc-loc-text">'+(m.region?'<span class="mc-loc-region-badge">'+esc(m.region)+'</span>':'')+esc(m.country)+(m.chapter?' · '+esc(m.chapter):'')+'</div></div></div>'+posBadges(m.pos)+(m.company?'<div class="mc-company">🏢 '+esc(m.company)+'</div>':'')+(m.industry?'<div class="mc-industry">📋 '+esc(m.industry)+'</div>':'')+(t?'<div class="mc-cats">'+t+'</div>':'')+tongsangSuggestion(m.categories)+(m.email?'<a class="mc-email" href="mailto:'+esc(m.email)+'">✉️ '+esc(m.email)+'</a>':'')+'</div>'}
 
-function rMem(){
-  const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));
-  if(state.page>tp)state.page=tp;
-  const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);
-  let h='';
-  if(state.view==='memberDetail'&&state.committee!==null){
-    const c=state.committee===0?null:cMap[state.committee];
-    const col=c?c.color:'#5A6478';
-    const nm=c?c.name:'기타 (미분류)';
-    const sh=c?c.short:'OTHER';
-    const em=c?c.emoji:'❓';
-    h+='<button class="com-detail-back" onclick="window._back()">← 업종 목록으로</button>';
-    h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:'+col+'"><span class="cat-emoji">'+em+'</span></div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c&&c.ts>0?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 추천 통상위원회: #'+c.ts+' '+esc(TONGSANG_NAMES[c.ts])+' →</a>':'')+'</div>';
-  }
-  h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'전체 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';
-  if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}
-  else{
-    h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';
-    if(tp>1){
-      h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';
-      const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);
-      const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;
-      u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});
-      h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>';
-    }
-  }
-  document.getElementById('content').innerHTML=h;twemojify();
-  document.querySelectorAll('.mc-cat').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});
-  document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})});
-}
+function rMem(){const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));if(state.page>tp)state.page=tp;const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);let h='';if(state.view==='memberDetail'&&state.committee!==null){const c=state.committee===0?null:cMap[state.committee];const col=c?c.color:'#5A6478';const nm=c?c.name:'기타';const sh=c?c.short:'OTHER';const em=c?c.emoji:'❓';h+='<button class="com-detail-back" onclick="window._back()">← 업종 목록으로</button>';h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:'+col+'"><span class="cat-emoji">'+em+'</span></div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c&&c.ts>0?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 추천 통상위원회: #'+c.ts+' '+esc(TONGSANG_NAMES[c.ts])+' →</a>':'')+'</div>'}h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'전체 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}else{h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';if(tp>1){h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>'}}document.getElementById('content').innerHTML=h;twemojify();document.querySelectorAll('.mc-cat').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})})}
 
 function render(){document.getElementById('viewCom').classList.toggle('active',state.view==='committees');document.getElementById('viewAll').classList.toggle('active',state.view==='all');if(state.view==='committees')rCom();else rMem()}
 window._back=()=>{state.view='committees';state.committee=null;state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})};
 document.getElementById('viewCom').onclick=()=>{state.view='committees';state.committee=null;state.page=1;render()};
 document.getElementById('viewAll').onclick=()=>{state.view='all';state.committee=null;state.page=1;render()};
-let st;document.getElementById('searchInput').addEventListener('input',e=>{clearTimeout(st);st=setTimeout(()=>{state.search=e.target.value;state.page=1;render()},200)});
+let st;document.getElementById('searchInput').addEventListener('input',e=>{clearTimeout(st);st=setTimeout(()=>{state.search=e.target.value;state.page=1;state.committee=null;state.view='committees';render()},200)});
+
+// Quick suggestion chips
+document.querySelectorAll('.suggestion-chip').forEach(el=>el.onclick=()=>{
+  const q=el.dataset.q;
+  document.getElementById('searchInput').value=q;
+  state.search=q;state.page=1;state.committee=null;state.view='committees';render();
+  document.querySelector('.section').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
 document.getElementById('regionFilter').onchange=e=>{state.region=e.target.value;state.page=1;render()};
 document.getElementById('countryFilter').onchange=e=>{state.country=e.target.value;state.page=1;render()};
 document.getElementById('chapterFilter').onchange=e=>{state.chapter=e.target.value;state.page=1;render()};
