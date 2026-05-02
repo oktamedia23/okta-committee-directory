@@ -2,25 +2,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OKTA 통상위원회 회원 디렉토리 · 세계한인경제무역협회</title>
-<meta name="description" content="OKTA 회원 5,095명을 15개 통상위원회 분과로 분류한 디렉토리. Google Sheets 실시간 연동.">
+<title>OKTA 회원 디렉토리 · 세계한인경제무역협회</title>
+<meta name="description" content="OKTA 회원을 업종별로 한눈에. Google Sheets 실시간 연동.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <style>
-:root{
-  --okta-red:#C8102E;--okta-red-dark:#9B0A22;--okta-red-light:#FF3B5C;
-  --okta-navy:#0E1A3A;--okta-navy-2:#1A2F5C;
-  --okta-gold:#F2A825;--okta-yellow:#FFD93D;--okta-orange:#FF6B35;
-  --bg:#F4F6FB;--card:#FFFFFF;
-  --text:#0E1525;--text-soft:#5A6478;--text-light:#9CA3B5;
-  --border:#E5E9F0;--border-strong:#CBD2DD;
-  --shadow-sm:0 1px 2px rgba(14,26,58,0.06),0 1px 3px rgba(14,26,58,0.04);
-  --shadow-md:0 4px 12px rgba(14,26,58,0.08),0 2px 4px rgba(14,26,58,0.05);
-  --shadow-lg:0 14px 40px rgba(14,26,58,0.14),0 6px 12px rgba(14,26,58,0.08);
-  --shadow-xl:0 24px 60px rgba(14,26,58,0.2),0 10px 20px rgba(14,26,58,0.1);
-  --shadow-glow:0 0 0 4px rgba(200,16,46,0.12);
-}
+:root{--okta-red:#C8102E;--okta-red-dark:#9B0A22;--okta-navy:#0E1A3A;--okta-navy-2:#1A2F5C;--okta-gold:#F2A825;--okta-yellow:#FFD93D;--okta-orange:#FF6B35;--bg:#F4F6FB;--card:#FFFFFF;--text:#0E1525;--text-soft:#5A6478;--text-light:#9CA3B5;--border:#E5E9F0;--border-strong:#CBD2DD;--shadow-sm:0 1px 2px rgba(14,26,58,0.06),0 1px 3px rgba(14,26,58,0.04);--shadow-md:0 4px 12px rgba(14,26,58,0.08),0 2px 4px rgba(14,26,58,0.05);--shadow-lg:0 14px 40px rgba(14,26,58,0.14),0 6px 12px rgba(14,26,58,0.08);--shadow-xl:0 24px 60px rgba(14,26,58,0.2),0 10px 20px rgba(14,26,58,0.1);--shadow-glow:0 0 0 4px rgba(200,16,46,0.12)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans KR','Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:'tnum'}
@@ -28,19 +17,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 a{color:inherit;text-decoration:none}
 input,select{font-family:inherit;font-size:14px}
 .container{max-width:1440px;margin:0 auto;padding:0 28px}
-
-/* HEADER */
-.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;backdrop-filter:blur(20px);background:rgba(255,255,255,0.92)}
+img.emoji{height:1em;width:1em;margin:0 0.05em 0 0.1em;vertical-align:-0.15em;display:inline-block}
+.country-chip-flag img.emoji{height:1.4em;width:1.4em;vertical-align:-0.3em}
+.mc-loc-flag img.emoji{height:1.5em;width:1.5em;vertical-align:-0.2em}
+.com-flag-big-emoji img.emoji{height:1.3em;width:1.3em}
+.cat-emoji img.emoji{height:1em;width:1em}
+.site-header{background:rgba(255,255,255,0.92);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;backdrop-filter:blur(20px)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:1440px;margin:0 auto;gap:20px}
 .brand{display:flex;align-items:center;gap:14px;min-width:0;transition:transform 0.2s}
 .brand:hover{transform:translateY(-1px)}
 .brand-logo-img{height:48px;width:auto;flex-shrink:0;display:block}
 .brand-tagline{font-size:11px;color:var(--text-light);font-weight:700;letter-spacing:0.6px;border-left:2px solid var(--border-strong);padding-left:14px;line-height:1.4;text-transform:uppercase}
 .header-stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.pill{padding:7px 14px;background:#F4F6FB;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:700;color:var(--text-soft);white-space:nowrap;letter-spacing:-0.1px}
+.pill{padding:7px 14px;background:#F4F6FB;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:700;color:var(--text-soft);white-space:nowrap}
 .pill-strong{background:linear-gradient(135deg,var(--okta-red),var(--okta-red-dark));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(200,16,46,0.3)}
-
-/* HERO */
 .hero{background:linear-gradient(135deg,var(--okta-navy) 0%,#162456 50%,#0a1430 100%);color:#fff;padding:72px 0 116px;position:relative;overflow:hidden}
 .hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
 .hero::before{content:'';position:absolute;top:-30%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(255,107,53,0.35) 0%,transparent 60%);border-radius:50%;animation:float 20s ease-in-out infinite}
@@ -56,19 +46,15 @@ input,select{font-family:inherit;font-size:14px}
 .hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;margin-top:44px;max-width:1100px}
 .hero-stat{display:flex;flex-direction:column;gap:4px;padding:18px 0;border-left:3px solid rgba(255,255,255,0.15);padding-left:18px;transition:all 0.2s}
 .hero-stat:hover{border-left-color:var(--okta-gold);transform:translateX(2px)}
-.hero-stat-num{font-size:38px;font-weight:900;letter-spacing:-1.5px;font-family:'Inter','Noto Sans KR',sans-serif;line-height:1}
+.hero-stat-num{font-size:38px;font-weight:900;letter-spacing:-1.5px;line-height:1}
 .hero-stat-label{font-size:11px;opacity:0.7;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:6px}
-
-/* TOP COUNTRIES STRIP */
 .top-countries{margin-top:36px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.12);position:relative;z-index:1}
 .top-countries-label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
 .top-countries-list{display:flex;gap:10px;flex-wrap:wrap}
-.country-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;font-size:13px;font-weight:600;backdrop-filter:blur(10px);transition:all 0.15s}
-.country-chip:hover{background:rgba(255,255,255,0.15);transform:translateY(-2px)}
-.country-chip-flag{font-size:18px;line-height:1}
-.country-chip-count{font-size:11px;font-weight:800;color:var(--okta-gold);background:rgba(242,168,37,0.15);padding:2px 8px;border-radius:999px}
-
-/* TOOLBAR */
+.country-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;font-size:13px;font-weight:600;backdrop-filter:blur(10px);transition:all 0.15s;color:#fff}
+.country-chip:hover{background:rgba(255,255,255,0.18);transform:translateY(-2px);border-color:rgba(255,255,255,0.3)}
+.country-chip-flag{font-size:18px;line-height:1;display:inline-flex;align-items:center}
+.country-chip-count{font-size:11px;font-weight:800;color:#fff;background:rgba(242,168,37,0.4);padding:2px 8px;border-radius:999px}
 .toolbar{margin-top:-56px;position:relative;z-index:5;background:#fff;border-radius:20px;padding:22px 26px;box-shadow:var(--shadow-xl);border:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .search-wrap{flex:1;min-width:260px;position:relative}
 .search-wrap input{width:100%;padding:14px 18px 14px 46px;border:1.5px solid var(--border);border-radius:12px;background:#F4F6FB;font-size:14px;outline:none;font-weight:500;transition:all 0.15s}
@@ -80,38 +66,32 @@ input,select{font-family:inherit;font-size:14px}
 .view-toggle{display:flex;background:#F4F6FB;border:1.5px solid var(--border);border-radius:12px;padding:3px}
 .view-toggle button{padding:11px 18px;font-size:13px;font-weight:700;color:var(--text-soft);border-radius:9px;transition:all 0.15s}
 .view-toggle button.active{background:#fff;color:var(--okta-navy);box-shadow:var(--shadow-sm)}
-
-/* SECTION */
 .section{padding:48px 0 80px}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px}
 .section-title{font-size:26px;font-weight:900;letter-spacing:-0.8px}
 .section-meta{font-size:13px;color:var(--text-light);font-weight:600}
-
-/* COMMITTEE CARDS - UPGRADED */
 .com-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
 .com-card{background:var(--card);border-radius:18px;border:1px solid var(--border);padding:24px;transition:all 0.25s cubic-bezier(0.4,0,0.2,1);cursor:pointer;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
-.com-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--c,var(--okta-red)),var(--c,var(--okta-red-light)));transition:height 0.25s}
-.com-card::after{content:'';position:absolute;top:-100px;right:-100px;width:200px;height:200px;background:radial-gradient(circle,var(--c,var(--okta-red))15%,transparent 70%);opacity:0;transition:opacity 0.4s;border-radius:50%;pointer-events:none}
+.com-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--c,var(--okta-red));transition:height 0.25s}
 .com-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--c,var(--okta-red))}
 .com-card:hover::before{height:8px}
-.com-card:hover::after{opacity:0.08}
-.com-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;position:relative;z-index:1}
-.com-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--c,var(--okta-red)),color-mix(in srgb,var(--c,var(--okta-red)) 80%,#000));color:#fff;font-weight:900;font-size:18px;letter-spacing:-0.5px;box-shadow:0 4px 12px color-mix(in srgb,var(--c,var(--okta-red)) 35%,transparent)}
+.com-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.com-num{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:14px;background:var(--c,var(--okta-red));color:#fff;font-size:26px;letter-spacing:-0.5px;box-shadow:0 4px 12px rgba(0,0,0,0.12)}
 .com-count{display:flex;flex-direction:column;align-items:flex-end}
-.com-count-num{font-size:30px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--text);font-family:'Inter','Noto Sans KR',sans-serif}
+.com-count-num{font-size:30px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--text)}
 .com-count-lbl{font-size:11px;color:var(--text-light);font-weight:700;letter-spacing:0.6px;text-transform:uppercase;margin-top:4px}
 .com-name{font-size:19px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.4px}
-.com-short{font-size:11px;color:var(--c,var(--okta-red));font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px}
-.com-flags-block{margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+.com-short{font-size:11px;color:var(--c,var(--okta-red));font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
+.com-tongsang{font-size:11px;color:var(--text-soft);font-weight:600;display:flex;align-items:center;gap:6px;padding:8px 12px;background:#F4F6FB;border-radius:8px;margin-bottom:14px;line-height:1.4}
+.com-tongsang-label{font-weight:800;color:var(--okta-navy)}
+.com-flags-block{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .com-flags-label{font-size:10px;color:var(--text-light);font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px}
 .com-flags{display:flex;gap:6px;flex-wrap:wrap}
 .com-flag-big{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#F4F6FB;border-radius:999px;font-size:12px;font-weight:700;color:var(--text)}
-.com-flag-big-emoji{font-size:18px;line-height:1}
-.com-flag-big-count{font-size:10px;color:var(--text-soft);font-weight:600}
+.com-flag-big-emoji{font-size:18px;line-height:1;display:inline-flex;align-items:center}
+.com-flag-big-count{font-size:10px;color:var(--text-soft);font-weight:700;background:#fff;padding:1px 6px;border-radius:999px}
 .com-card-cta{position:absolute;bottom:18px;right:22px;font-size:12px;font-weight:800;color:var(--c,var(--okta-red));opacity:0;transform:translateX(-6px);transition:all 0.2s}
 .com-card:hover .com-card-cta{opacity:1;transform:translateX(0)}
-
-/* MEMBER CARDS */
 .member-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px}
 .member-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:20px;box-shadow:var(--shadow-sm);transition:all 0.2s;position:relative;overflow:hidden}
 .member-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--okta-navy-2)}
@@ -123,89 +103,58 @@ input,select{font-family:inherit;font-size:14px}
 .mc-info{flex:1;min-width:0}
 .mc-name-row{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:4px}
 .mc-name{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.4px}
-.mc-loc-flag{font-size:24px;line-height:1;flex-shrink:0}
-.mc-loc-text{font-size:11px;color:var(--text-soft);font-weight:600;display:flex;align-items:center;gap:4px}
+.mc-loc-flag{font-size:24px;line-height:1;flex-shrink:0;display:inline-flex;align-items:center}
+.mc-loc-text{font-size:12px;color:var(--text-soft);font-weight:600}
 .mc-loc-region-badge{display:inline-block;font-size:10px;font-weight:700;color:var(--okta-navy);background:#E0E7FF;padding:2px 7px;border-radius:5px;margin-right:5px;letter-spacing:0.3px}
 .mc-positions{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
-.mc-position{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#fff;padding:4px 10px;border-radius:6px;letter-spacing:0.2px}
+.mc-position{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#fff;padding:4px 10px;border-radius:6px}
 .mc-position.honor{background:linear-gradient(135deg,#C8102E,#9B0A22)}
 .mc-position.board{background:linear-gradient(135deg,#3F51B5,#283593)}
 .mc-position.exec{background:linear-gradient(135deg,#1A2F5C,#0E1A3A)}
 .mc-position.chapter{background:linear-gradient(135deg,#F2A825,#FF9800);color:#1A1F36}
 .mc-position.audit{background:linear-gradient(135deg,#000,#333)}
-.mc-company{font-size:14px;color:var(--text);margin-bottom:6px;font-weight:600;display:flex;align-items:center;gap:6px}
-.mc-company-icon{color:var(--text-light)}
-.mc-industry{font-size:13px;color:var(--text-soft);margin-bottom:12px;display:flex;align-items:flex-start;gap:6px;line-height:1.5}
-.mc-industry-icon{color:var(--text-light);flex-shrink:0;margin-top:2px}
-.mc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
-.mc-tag{padding:4px 10px;background:var(--tc,#F4F6FB);color:#fff;font-size:11px;font-weight:800;border-radius:6px;cursor:pointer;transition:all 0.15s;letter-spacing:0.2px}
-.mc-tag:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.mc-company{font-size:14px;color:var(--text);margin-bottom:6px;font-weight:600}
+.mc-industry{font-size:13px;color:var(--text-soft);margin-bottom:10px;line-height:1.5}
+.mc-cats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.mc-cat{padding:4px 10px;background:var(--tc,#F4F6FB);color:#fff;font-size:11px;font-weight:800;border-radius:6px;cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:4px}
+.mc-cat:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.mc-tongsang{font-size:11px;color:var(--text-soft);font-weight:600;display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:#F4F6FB;border-radius:8px;margin-bottom:10px;border:1px dashed var(--border-strong)}
+.mc-tongsang-label{font-weight:800;color:var(--okta-navy);font-size:10px;letter-spacing:0.5px;text-transform:uppercase}
+.mc-tongsang-link{color:var(--okta-red);font-weight:700}
+.mc-tongsang-link:hover{text-decoration:underline}
 .mc-email{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--okta-navy);font-weight:600;word-break:break-all;padding:6px 0;border-top:1px solid var(--border)}
 .mc-email:hover{color:var(--okta-red)}
-
-/* DETAIL BANNER */
-.com-detail-banner{background:linear-gradient(135deg,#fff 0%,#fff 60%,color-mix(in srgb,var(--c,var(--okta-red)) 6%,#fff) 100%);border-radius:20px;padding:28px 32px;border:1px solid var(--border);margin-bottom:28px;position:relative;overflow:hidden;box-shadow:var(--shadow-md)}
-.com-detail-banner::before{content:'';position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(180deg,var(--c,var(--okta-red)),color-mix(in srgb,var(--c,var(--okta-red)) 70%,#000))}
+.com-detail-banner{background:#fff;border-radius:20px;padding:28px 32px;border:1px solid var(--border);margin-bottom:28px;position:relative;overflow:hidden;box-shadow:var(--shadow-md)}
+.com-detail-banner::before{content:'';position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--c,var(--okta-red))}
 .com-detail-head{display:flex;align-items:center;gap:20px;margin-bottom:16px}
-.com-detail-num{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--c,var(--okta-red)),color-mix(in srgb,var(--c,var(--okta-red)) 75%,#000));color:#fff;font-weight:900;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px color-mix(in srgb,var(--c,var(--okta-red)) 30%,transparent)}
+.com-detail-num{width:64px;height:64px;border-radius:16px;background:var(--c,var(--okta-red));color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,0.12)}
 .com-detail-name{font-size:28px;font-weight:900;letter-spacing:-0.8px}
 .com-detail-short{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
 .com-detail-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-soft);font-weight:700;padding:10px 16px;border:1.5px solid var(--border);border-radius:10px;margin-bottom:16px;background:#fff;transition:all 0.15s}
 .com-detail-back:hover{background:#F4F6FB;border-color:var(--border-strong);transform:translateX(-2px)}
-.com-detail-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--okta-navy);font-weight:700;padding:8px 14px;background:#F4F6FB;border-radius:8px;margin-top:12px;transition:all 0.15s}
+.com-detail-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--okta-navy);font-weight:700;padding:8px 14px;background:#F4F6FB;border-radius:8px;margin-top:12px}
 .com-detail-link:hover{background:#E5E9F0}
-
-/* PAGINATION */
 .pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:40px;flex-wrap:wrap}
 .pagination button{padding:10px 14px;background:#fff;border:1.5px solid var(--border);border-radius:10px;font-size:13px;font-weight:700;color:var(--text-soft);min-width:42px;transition:all 0.15s}
 .pagination button:hover:not(:disabled){border-color:var(--okta-navy);color:var(--okta-navy);transform:translateY(-1px)}
 .pagination button.active{background:linear-gradient(135deg,var(--okta-navy-2),var(--okta-navy));color:#fff;border-color:transparent;box-shadow:0 4px 10px rgba(14,26,58,0.2)}
 .pagination button:disabled{opacity:0.4;cursor:not-allowed}
-
-/* FOOTER */
 footer{padding:36px 0 48px;text-align:center;color:var(--text-light);font-size:13px;border-top:1px solid var(--border);margin-top:80px;background:#fff}
 footer a{color:var(--okta-red);font-weight:700}
 footer a:hover{text-decoration:underline}
-
-/* STATES */
 .empty-state{padding:100px 24px;text-align:center;color:var(--text-light)}
 .empty-state h3{color:var(--text);font-size:20px;margin-bottom:8px;font-weight:800}
 .loading{padding:140px 24px;text-align:center;color:var(--text-light)}
 .loading-spinner{width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--okta-red);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 20px}
 .loading p{font-size:15px;font-weight:600}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* SCROLL ANIMATIONS */
-.fade-in{animation:fadeIn 0.5s ease-out}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-@media(max-width:768px){
-  .hero{padding:48px 0 88px}
-  .hero-title{font-size:36px}
-  .brand-tagline{display:none}
-  .container{padding:0 16px}
-  .header-inner{padding:12px 16px}
-  .toolbar{padding:16px;flex-direction:column;align-items:stretch;gap:8px}
-  .search-wrap,.filter-select,.view-toggle{width:100%;min-width:0}
-  .com-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .com-card{padding:18px}
-  .com-num{width:40px;height:40px;font-size:15px}
-  .com-name{font-size:15px}
-  .com-count-num{font-size:24px}
-  .member-list{grid-template-columns:1fr}
-  .hero-stat-num{font-size:28px}
-  .top-countries-list{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}
-}
-@media(max-width:480px){
-  .com-grid{grid-template-columns:1fr}
-  .hero-title{font-size:28px}
-  .section-title{font-size:20px}
-}
+@media(max-width:768px){.hero{padding:48px 0 88px}.hero-title{font-size:36px}.brand-tagline{display:none}.container{padding:0 16px}.header-inner{padding:12px 16px}.toolbar{padding:16px;flex-direction:column;align-items:stretch;gap:8px}.search-wrap,.filter-select,.view-toggle{width:100%;min-width:0}.com-grid{grid-template-columns:1fr 1fr;gap:12px}.com-card{padding:18px}.com-num{width:44px;height:44px;font-size:22px}.com-name{font-size:15px}.com-count-num{font-size:24px}.member-list{grid-template-columns:1fr}.hero-stat-num{font-size:28px}.top-countries-list{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}}
+@media(max-width:480px){.com-grid{grid-template-columns:1fr}.hero-title{font-size:28px}.section-title{font-size:20px}}
 </style>
 </head>
 <body>
 <header class="site-header"><div class="header-inner">
-<a class="brand" href="https://www.okta.net/" target="_blank" rel="noopener"><img class="brand-logo-img" src="https://www.okta.net/cmsstore/cmssite/okta/_images/okta_web_logo-210104-1.jpg" alt="OKTA 세계한인경제무역협회"><span class="brand-tagline">통상위원회<br>회원 디렉토리</span></a>
+<a class="brand" href="https://www.okta.net/" target="_blank" rel="noopener"><img class="brand-logo-img" src="https://www.okta.net/cmsstore/cmssite/okta/_images/okta_web_logo-210104-1.jpg" alt="OKTA 세계한인경제무역협회"><span class="brand-tagline">업종별<br>회원 디렉토리</span></a>
 <div class="header-stats"><span class="pill pill-strong" id="hdrTotal">로딩 중…</span><span class="pill" id="hdrDirectors">-</span><span class="pill" id="hdrCountries">-</span></div>
 </div></header>
 
@@ -214,13 +163,12 @@ footer a:hover{text-decoration:underline}
 <div class="container hero-inner">
 <div class="hero-badge">LIVE · Google Sheets 실시간 연동</div>
 <h1 class="hero-title">전세계 한인 비즈니스를<br><span class="accent">업종별로 한눈에</span></h1>
-<p class="hero-sub">OKTA 세계한인경제무역협회 회원을 15개 통상위원회 분과로 분류한 통합 디렉토리. 제23대 상임이사·지회장·감사 직위까지 한 화면에서 확인하세요.</p>
+<p class="hero-sub">OKTA 세계한인경제무역협회 회원을 업종별로 분류한 디렉토리. 같은 업종 회원과 통상위원회 추천을 한눈에 확인하세요.</p>
 <div class="hero-stats">
 <div class="hero-stat"><div class="hero-stat-num" id="heroTotal" data-target="0">0</div><div class="hero-stat-label">전체 회원</div></div>
 <div class="hero-stat"><div class="hero-stat-num" id="heroDirectors" data-target="0">0</div><div class="hero-stat-label">임원진</div></div>
 <div class="hero-stat"><div class="hero-stat-num" id="heroChapterPres" data-target="0">0</div><div class="hero-stat-label">지회장</div></div>
-<div class="hero-stat"><div class="hero-stat-num" id="heroAuditors" data-target="0">0</div><div class="hero-stat-label">감사</div></div>
-<div class="hero-stat"><div class="hero-stat-num">15</div><div class="hero-stat-label">통상 분과</div></div>
+<div class="hero-stat"><div class="hero-stat-num" id="heroCategories" data-target="0">0</div><div class="hero-stat-label">업종</div></div>
 <div class="hero-stat"><div class="hero-stat-num" id="heroCountries" data-target="0">0</div><div class="hero-stat-label">활동 국가</div></div>
 </div>
 <div class="top-countries">
@@ -235,33 +183,96 @@ footer a:hover{text-decoration:underline}
 <select class="filter-select" id="countryFilter"><option value="">📍 전체 국가</option></select>
 <select class="filter-select" id="chapterFilter"><option value="">🏢 전체 지회</option></select>
 <select class="filter-select" id="positionFilter"><option value="">⭐ 전체 직위</option><option value="director">임원진만</option><option value="chapter">지회장</option><option value="honor">명예회장</option><option value="board">이사장단</option><option value="exec">상임집행부</option><option value="audit">감사</option></select>
-<div class="view-toggle"><button id="viewCom" class="active">분과별</button><button id="viewAll">전체 명단</button></div>
+<div class="view-toggle"><button id="viewCom" class="active">업종별</button><button id="viewAll">전체 명단</button></div>
 </div></div>
 
 <main class="container section"><div id="content"><div class="loading"><div class="loading-spinner"></div><p>Google Sheets에서 데이터 불러오는 중…</p></div></div></main>
 
 <footer><div class="container">
-<p>OKTA 통상위원회 회원 디렉토리 · 데이터 갱신: <span id="genDate">-</span> · <a href="https://www.okta.net/" target="_blank">okta.net</a> · <a href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">통상위원회 안내</a></p>
+<p>OKTA 회원 디렉토리 · 데이터 갱신: <span id="genDate">-</span> · <a href="https://www.okta.net/" target="_blank">okta.net</a> · <a href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">통상위원회 안내</a></p>
 </div></footer>
 
 <script>
+function twemojify(){if(typeof twemoji!=='undefined'){twemoji.parse(document.body,{folder:'svg',ext:'.svg',base:'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'})}}
+
 (async function(){
 const FULL_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTJ7cI8A2QRNoZVrf5FxagVCq8SLB9xLqf3Knx4lxf4q56kQYQDW8ecPf0DDoZnlncwD80VWKRxJzqJ/pub?output=csv';
 const DIR_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vScHky-jImor1LT87tYdu8weCC_cW4unzfuLrpfreH6DB_05P0U_-Wn8Wu2nTmb5C6e4lbvKoIW73gF/pub?output=csv';
-const COMMITTEES=[{n:1,name:'리빙 & 뷰티',short:'LIVING&BEAUTY',color:'#E91E63',keywords:['악기','공예','토속','목제','보석','선물','예술용품','도자기','액세서리','시계','안경','완구','비누','샴푸','위생용품','화장실','아기','호신','안전','애완동물용품','애완용품','가구','가정용기','문구','장식','신발','가방','가발','피혁','쥬얼리','ACCESSORY']},{n:2,name:'식음료, 요식업',short:'F&B',color:'#FF5722',keywords:['유제품','농업제품','농산물','가공/건조/냉동','냉동식품','가공식품','가축','음료','커피','차','담배','설탕','제과','베이커리','육류','해산물','수산','곡물','첨가물','식자재','식재료','요식','음식점','식당','주방기구','주방용품','식기','식품','FOOD','RESTAURANT']},{n:3,name:'전기, 전자',short:'ELECTRONICS',color:'#2196F3',keywords:['광학','계측','비디오','카메라','전자수첩','전자사전','전자부품','컴퓨터','전자제품','소프트웨어','SW','주변장치','통신장치','오디오','게임기','게임악세','게임악세사리','IT','사무기기','가전','반도체','전기','전자','소프트','로봇','휴대폰','무선통신']},{n:4,name:'화학, 자원',short:'CHEMICAL',color:'#795548',keywords:['무기화학','유기화학','석유화학','화학물질','염료','안료','페인트','잉크','고무','플라스틱','세제','화약','석탄','석유','가스','접착제','밀봉제','종이','포장재','비료','농화학','왁스','비철금속','광물','철','강철','비철합금','광석','정광','자원','석유 ','석유,','석유는','화학','석유원료']},{n:5,name:'건축, 재활용',short:'CONSTRUCTION',color:'#607D8B',keywords:['건설자재','건축자재','건설','건축','설계','인테리어','재생','재활용','친환경','에너지','폐기물','부동산개발','부동산건설','건자재','시공']},{n:6,name:'호텔, 여행',short:'HOSPITALITY',color:'#FF9800',keywords:['관광','호텔','여행','서비스 용품','호텔용품','리조트','펜션','숙박','관광객','여행사','TRAVEL','HOTEL']},{n:7,name:'건강식품, 미용용품',short:'HEALTH&BEAUTY',color:'#9C27B0',keywords:['약초','의료용구','의료기구','의약원료','의약완제품','건강식품','애완동물식품','애완식품','헬스장비','스포츠 용품','스포츠용품','화장용품','화장품','미용용품','뷰티','BEAUTY','HEALTH','코스메틱','한방','보조제']},{n:8,name:'금융, 법률, 부동산',short:'FINANCE&LAW',color:'#3F51B5',keywords:['법률','회계','은행','증권','보험','프렌차이즈','프랜차이즈','부동산','임대','중계','중개','개발','투자','금융','컨설팅','자산관리','법무','세무','이민']},{n:9,name:'섬유, 섬유제품',short:'TEXTILE',color:'#00BCD4',keywords:['가정용 섬유','가정용섬유','섬유제품','가죽','모피','직물','의류','모자','양말','스카프','패션','어패럴','APPAREL','TEXTILE','FASHION','속옷','원단']},{n:10,name:'물류',short:'LOGISTICS',color:'#4CAF50',keywords:['물류','운송','창고','선적','LOGISTICS','SHIPPING','TRANSPORT','특송','국제운송','복합운송','해운','항공운송']},{n:11,name:'전자상거래',short:'E-COMMERCE',color:'#F44336',keywords:['홈쇼핑','통신판매','종합무역','전자상거래','이커머스','이-커머스','E-COMMERCE','ECOMMERCE','온라인쇼핑','오픈마켓','마켓플레이스','수입','수출','무역','종합']},{n:12,name:'교육, 문화, 리크루팅',short:'EDU&CULTURE',color:'#673AB7',keywords:['출판','교육','문화','에니메이션','애니메이션','광고','이벤트','언론','미디어','학원','강사','콘텐츠','컨텐츠','방송','신문','도서','학교','학습','MEDIA','리크루팅','채용']},{n:13,name:'기계, 공구',short:'MACHINERY',color:'#FFC107',keywords:['공구용품','공구','기계류','배관설비','위성','오토바이','자동차','컨테이너','자전거','선박','자동차부품','기차','승강기','케이블카','산업용전기','발전기','케이블','히터','램프','조명기구','조명','팬','공기정화기','축전기','충전기','산업기계','중장비','농기계','조선']},{n:14,name:'4차산업, 컨텐츠, 플랫폼',short:'NEW-TECH',color:'#009688',keywords:['바이오','IoT','3D프린팅','3D프린터','드론','블록체인','신재생에너지','태양광','풍력','로봇','인공지능','AI','증강현실','AR','VR','빅데이터','BIG DATA','BIGDATA','메타버스','NFT','핀테크','플랫폼','앱개발','스타트업']},{n:15,name:'전시 사업',short:'EXHIBITION',color:'#8BC34A',keywords:['기업회의','포상관광','컨벤션','전시','MICE','박람회','EXPO','TRADE SHOW','전시회','트레이드쇼','쇼케이스']}];
+
+// OUR business categories (priority order: longest/most specific first within each)
+const CATEGORIES=[
+ {n:1,emoji:'🛒',name:'종합무역/유통',short:'TRADE',color:'#F44336',ts:11,keywords:['종합무역','수출입','수출','수입','무역','도매','소매','유통','종합']},
+ {n:2,emoji:'🍱',name:'식품/요식업',short:'F&B',color:'#FF5722',ts:2,keywords:['가공/건조/냉동식품','가공식품','냉동식품','농산물','농업제품','수산물','해산물','유제품','음식점','식자재','식재료','요식업','식품','식기','주방용품','주방기구','베이커리','제과','커피','음료','담배','곡물','육류','요식','식당','메뉴']},
+ {n:3,emoji:'💄',name:'화장품/뷰티',short:'BEAUTY',color:'#E91E63',ts:7,keywords:['화장용품','화장품','미용용품','코스메틱','뷰티','헤어케어','네일','향수']},
+ {n:4,emoji:'💊',name:'건강/의료',short:'HEALTH',color:'#9C27B0',ts:7,keywords:['건강기능식품','건강식품','의약완제품','의약원료','의료용구','의료기구','약초제제','헬스장비','보조제','한방','약품','의약','보건']},
+ {n:5,emoji:'👗',name:'섬유/의류/패션',short:'FASHION',color:'#00BCD4',ts:9,keywords:['가정용 섬유','가정용섬유','섬유제품','어패럴','패션잡화','패션','속옷','원단','직물','의류','의복','가죽','모피','신발','가방','모자','양말','스카프','액세서리','쥬얼리','시계','안경','쇼핑백']},
+ {n:6,emoji:'💻',name:'IT/소프트웨어',short:'IT/SW',color:'#3F51B5',ts:3,keywords:['소프트웨어','컴퓨터','정보통신','시스템','앱개발','웹개발','SW','IT인프라','IT']},
+ {n:7,emoji:'📱',name:'전자/전기제품',short:'ELECTRONICS',color:'#2196F3',ts:3,keywords:['전자제품','전자부품','반도체','디스플레이','휴대폰','오디오','카메라','비디오','전자수첩','전자사전','계측장치','광학','통신장치','주변장치','게임기기','게임악세사리','사무기기','가전','전자','전기']},
+ {n:8,emoji:'🛍️',name:'전자상거래/이커머스',short:'E-COMMERCE',color:'#FF6B35',ts:11,keywords:['전자상거래','이커머스','이-커머스','홈쇼핑','통신판매','온라인쇼핑','오픈마켓','마켓플레이스','셀러']},
+ {n:9,emoji:'🏨',name:'호텔/여행',short:'HOSPITALITY',color:'#FF9800',ts:6,keywords:['호텔용품','호텔','관광객','여행사','관광','여행','리조트','펜션','숙박','MICE']},
+ {n:10,emoji:'🚚',name:'물류/운송',short:'LOGISTICS',color:'#4CAF50',ts:10,keywords:['해운','항공운송','국제운송','복합운송','물류','운송','운수','창고','선적','특송','택배']},
+ {n:11,emoji:'🏗️',name:'건설/인테리어',short:'CONSTRUCTION',color:'#607D8B',ts:5,keywords:['건축자재','건설자재','건자재','종합건설','인테리어','시공','설계','건설','건축','부동산개발']},
+ {n:12,emoji:'🏦',name:'금융/법률/부동산',short:'FINANCE/LAW',color:'#283593',ts:8,keywords:['부동산금융','부동산','자산관리','컨설팅','프랜차이즈','프렌차이즈','법률','회계','은행','증권','보험','투자','금융','법무','세무','이민','중개','중계','임대','회계사','변호사']},
+ {n:13,emoji:'🚗',name:'자동차/기계/공구',short:'MACHINERY',color:'#FFC107',ts:13,keywords:['자동차부품','자동차','오토바이','자전거','기계류','산업기계','공구용품','공구','중장비','농기계','선박','기차','컨테이너','발전기','엔진','조명기구','조명','케이블','산업용전기','조선','승강기']},
+ {n:14,emoji:'⚗️',name:'화학/자원/소재',short:'CHEMICAL',color:'#795548',ts:4,keywords:['석유화학','화학물질','화학재','화학','석유','천연가스','가스','석탄','광물','광석','정광','비철금속','비철합금','강철','철','금속','염료','안료','페인트','잉크','고무','플라스틱','세제','접착제','농화학','비료','종이','포장재','왁스','자원','원자재']},
+ {n:15,emoji:'📚',name:'교육/문화/미디어',short:'EDU/MEDIA',color:'#673AB7',ts:12,keywords:['언론','미디어','출판','교육','문화','광고','이벤트','학원','강사','콘텐츠','컨텐츠','방송','신문','도서','학교','학습','애니메이션','에니메이션','리크루팅','채용','음악','영상']},
+ {n:16,emoji:'🤖',name:'4차산업/AI/바이오',short:'NEW-TECH',color:'#009688',ts:14,keywords:['인공지능','AI','바이오','IoT','3D프린팅','3D프린터','드론','블록체인','신재생에너지','태양광','풍력','로봇','증강현실','AR','VR','빅데이터','메타버스','NFT','핀테크','플랫폼','스타트업']},
+ {n:17,emoji:'🏠',name:'리빙/가구/생활용품',short:'LIVING',color:'#8D6E63',ts:1,keywords:['가구','가정용기','문구류','문구','장식물','장식','선물','예술용품','공예품','공예','목제품','악기','도자기','완구','비누','샴푸','위생용품','애완동물용품','애완용품','애완식품','보석','토속예술','가발','피혁']},
+ {n:18,emoji:'🎪',name:'전시/MICE',short:'MICE',color:'#8BC34A',ts:15,keywords:['컨벤션','전시회','전시','박람회','EXPO','MICE','쇼케이스','기업회의','포상관광','트레이드쇼']},
+ {n:19,emoji:'🌾',name:'농수산/축산',short:'AGRI',color:'#689F38',ts:2,keywords:['농업','농산물','축산','가축','수산','어업']},
+ {n:20,emoji:'⚙️',name:'기타/서비스',short:'OTHER',color:'#607D8B',ts:0,keywords:['서비스','기타']}
+];
+// Sort each category's keywords by length descending for accurate matching
+CATEGORIES.forEach(c=>c.keywords.sort((a,b)=>b.length-a.length));
+
+const TONGSANG_NAMES={1:'리빙 & 뷰티',2:'식음료, 요식업',3:'전기, 전자',4:'화학, 자원',5:'건축, 재활용',6:'호텔, 여행',7:'건강식품, 미용용품',8:'금융, 법률, 부동산',9:'섬유, 섬유제품',10:'물류',11:'전자상거래',12:'교육, 문화, 리크루팅',13:'기계, 공구',14:'4차산업, 컨텐츠, 플랫폼',15:'전시 사업'};
 
 const FLAGS={"USA":"\u{1F1FA}\u{1F1F8}","U.S.A.":"\u{1F1FA}\u{1F1F8}","UNITED STATES":"\u{1F1FA}\u{1F1F8}","CHINA":"\u{1F1E8}\u{1F1F3}","JAPAN":"\u{1F1EF}\u{1F1F5}","KOREA":"\u{1F1F0}\u{1F1F7}","SOUTH KOREA":"\u{1F1F0}\u{1F1F7}","AUSTRALIA":"\u{1F1E6}\u{1F1FA}","CANADA":"\u{1F1E8}\u{1F1E6}","U.K":"\u{1F1EC}\u{1F1E7}","UK":"\u{1F1EC}\u{1F1E7}","UNITED KINGDOM":"\u{1F1EC}\u{1F1E7}","GERMANY":"\u{1F1E9}\u{1F1EA}","FRANCE":"\u{1F1EB}\u{1F1F7}","ITALIA":"\u{1F1EE}\u{1F1F9}","ITALY":"\u{1F1EE}\u{1F1F9}","SPAIN":"\u{1F1EA}\u{1F1F8}","RUSSIA":"\u{1F1F7}\u{1F1FA}","VIETNAM":"\u{1F1FB}\u{1F1F3}","THAILAND":"\u{1F1F9}\u{1F1ED}","INDIA":"\u{1F1EE}\u{1F1F3}","INDONESIA":"\u{1F1EE}\u{1F1E9}","PHILIPPINES":"\u{1F1F5}\u{1F1ED}","MALAYSIA":"\u{1F1F2}\u{1F1FE}","SINGAPORE":"\u{1F1F8}\u{1F1EC}","HONG KONG":"\u{1F1ED}\u{1F1F0}","TAIWAN":"\u{1F1F9}\u{1F1FC}","MEXICO":"\u{1F1F2}\u{1F1FD}","BRAZIL":"\u{1F1E7}\u{1F1F7}","NEW ZEALAND":"\u{1F1F3}\u{1F1FF}","UZBEKISTAN":"\u{1F1FA}\u{1F1FF}","KAZAKHSTAN":"\u{1F1F0}\u{1F1FF}","KYRGYZSTAN":"\u{1F1F0}\u{1F1EC}","BANGLADESH":"\u{1F1E7}\u{1F1E9}","MYANMAR":"\u{1F1F2}\u{1F1F2}","CAMBODIA":"\u{1F1F0}\u{1F1ED}","SWITZERLAND":"\u{1F1E8}\u{1F1ED}","AUSTRIA":"\u{1F1E6}\u{1F1F9}","NETHERLANDS":"\u{1F1F3}\u{1F1F1}","BELGIUM":"\u{1F1E7}\u{1F1EA}","SWEDEN":"\u{1F1F8}\u{1F1EA}","NORWAY":"\u{1F1F3}\u{1F1F4}","FINLAND":"\u{1F1EB}\u{1F1EE}","DENMARK":"\u{1F1E9}\u{1F1F0}","TURKEY":"\u{1F1F9}\u{1F1F7}","TURKIYE":"\u{1F1F9}\u{1F1F7}","UAE":"\u{1F1E6}\u{1F1EA}","UNITED ARAB EMIRATES":"\u{1F1E6}\u{1F1EA}","SAUDI ARABIA":"\u{1F1F8}\u{1F1E6}","EGYPT":"\u{1F1EA}\u{1F1EC}","CZECH REPUBLIC":"\u{1F1E8}\u{1F1FF}","CZECH REP":"\u{1F1E8}\u{1F1FF}","CZECH":"\u{1F1E8}\u{1F1FF}","PARAGUAY":"\u{1F1F5}\u{1F1FE}","CHILE":"\u{1F1E8}\u{1F1F1}","ARGENTINA":"\u{1F1E6}\u{1F1F7}","PERU":"\u{1F1F5}\u{1F1EA}","NIGERIA":"\u{1F1F3}\u{1F1EC}","SOUTH AFRICA":"\u{1F1FF}\u{1F1E6}","POLAND":"\u{1F1F5}\u{1F1F1}","HUNGARY":"\u{1F1ED}\u{1F1FA}","ROMANIA":"\u{1F1F7}\u{1F1F4}","COSTA RICA":"\u{1F1E8}\u{1F1F7}","DOMINICAN REPUBLIC":"\u{1F1E9}\u{1F1F4}","PANAMA":"\u{1F1F5}\u{1F1E6}","GUATEMALA":"\u{1F1EC}\u{1F1F9}","ECUADOR":"\u{1F1EA}\u{1F1E8}","HONDURAS":"\u{1F1ED}\u{1F1F3}","COLOMBIA":"\u{1F1E8}\u{1F1F4}","PAKISTAN":"\u{1F1F5}\u{1F1F0}","SRI LANKA":"\u{1F1F1}\u{1F1F0}","NEPAL":"\u{1F1F3}\u{1F1F5}","MONGOLIA":"\u{1F1F2}\u{1F1F3}","LAOS":"\u{1F1F1}\u{1F1E6}","UKRAINE":"\u{1F1FA}\u{1F1E6}","GREECE":"\u{1F1EC}\u{1F1F7}","PORTUGAL":"\u{1F1F5}\u{1F1F9}","IRELAND":"\u{1F1EE}\u{1F1EA}","KENYA":"\u{1F1F0}\u{1F1EA}","GHANA":"\u{1F1EC}\u{1F1ED}","MOROCCO":"\u{1F1F2}\u{1F1E6}","TANZANIA":"\u{1F1F9}\u{1F1FF}"};
+
 function flag(c){if(!c)return"\u{1F310}";return FLAGS[c.toUpperCase().trim()]||"\u{1F3F3}\u{FE0F}"}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m])}
-function initials(name){if(!name)return'?';const trimmed=name.trim();if(/[ㄱ-ㆎ가-힣]/.test(trimmed))return trimmed.slice(0,1);const parts=trimmed.split(/\s+/);if(parts.length>=2)return (parts[0][0]+parts[parts.length-1][0]).toUpperCase();return trimmed.slice(0,2).toUpperCase()}
-
+function initials(name){if(!name)return'?';const t=name.trim();if(/[ㄱ-ㆎ가-힣]/.test(t))return t.slice(0,1);const p=t.split(/\s+/);if(p.length>=2)return (p[0][0]+p[p.length-1][0]).toUpperCase();return t.slice(0,2).toUpperCase()}
 function parseCSV(text){const rows=[];let row=[],cell='',inQ=false;for(let i=0;i<text.length;i++){const c=text[i];if(inQ){if(c==='"'){if(text[i+1]==='"'){cell+='"';i++}else inQ=false}else cell+=c}else{if(c==='"')inQ=true;else if(c===','){row.push(cell);cell=''}else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell=''}else if(c==='\r'){}else cell+=c}}if(cell||row.length){row.push(cell);rows.push(row)}return rows}
-function classify(s){if(!s||!s.trim())return[];const t=s.toUpperCase();const m=[];COMMITTEES.forEach(c=>{for(const k of c.keywords){if(t.includes(k.toUpperCase())){m.push(c.n);break}}});return m}
+
+// SMART TOKEN-BASED CLASSIFICATION
+// Split industry text into tokens, then match each token to a category by longest keyword match
+function classify(industry){
+  if(!industry||!industry.trim())return [];
+  const text=industry.trim();
+  // Tokenize: split by separators
+  const tokens=text.split(/[,，、/\s]+/).filter(t=>t.length>0);
+  const matched=new Set();
+  // Try each token first (preferred - cleaner match)
+  tokens.forEach(token=>{
+    const tu=token.toUpperCase();
+    let bestCat=null,bestKwLen=0;
+    CATEGORIES.forEach(c=>{
+      for(const kw of c.keywords){
+        const ku=kw.toUpperCase();
+        // Exact match or token contains the keyword
+        if(tu===ku||tu.includes(ku)){
+          if(kw.length>bestKwLen){bestCat=c.n;bestKwLen=kw.length}
+          break
+        }
+      }
+    });
+    if(bestCat)matched.add(bestCat);
+  });
+  // Also check whole text for compound matches (e.g. "건강식품/화장품")
+  const fullU=text.toUpperCase();
+  CATEGORIES.forEach(c=>{
+    if(matched.has(c.n))return;
+    for(const kw of c.keywords){
+      if(kw.length<2)continue; // skip 1-char keywords for whole text match
+      if(fullU.includes(kw.toUpperCase())){matched.add(c.n);break}
+    }
+  });
+  return Array.from(matched);
+}
+
 function gR(c){const M={'USA':'북미주','U.S.A.':'북미주','CANADA':'북미주','CHINA':'중국','HONG KONG':'중국','TAIWAN':'아시아','JAPAN':'일본','AUSTRALIA':'대양주','NEW ZEALAND':'대양주','INDONESIA':'아시아','MALAYSIA':'아시아','SINGAPORE':'아시아','PHILIPPINES':'아시아','VIETNAM':'아시아','THAILAND':'아시아','MYANMAR':'아시아','CAMBODIA':'아시아','INDIA':'아시아','BANGLADESH':'아시아','PAKISTAN':'아시아','MEXICO':'중남미','BRAZIL':'중남미','ARGENTINA':'중남미','CHILE':'중남미','PERU':'중남미','PARAGUAY':'중남미','GUATEMALA':'중남미','COSTA RICA':'중남미','DOMINICAN REPUBLIC':'중남미','PANAMA':'중남미','ECUADOR':'중남미','HONDURAS':'중남미','GERMANY':'유럽·유라시아','FRANCE':'유럽·유라시아','ITALIA':'유럽·유라시아','SPAIN':'유럽·유라시아','U.K':'유럽·유라시아','SWITZERLAND':'유럽·유라시아','AUSTRIA':'유럽·유라시아','NETHERLANDS':'유럽·유라시아','POLAND':'유럽·유라시아','CZECH REPUBLIC':'유럽·유라시아','RUSSIA':'유럽·유라시아','UZBEKISTAN':'유럽·유라시아','KAZAKHSTAN':'유럽·유라시아','TURKEY':'중동·아프리카','TURKIYE':'중동·아프리카','UAE':'중동·아프리카','SOUTH AFRICA':'중동·아프리카','NIGERIA':'중동·아프리카'};return M[(c||'').toUpperCase().trim()]||'기타'}
 function aF(v){return !!(v&&v.trim())}
 function aL(v,d){if(!v||!v.trim())return '';const s=v.trim();return (s==='○'||s==='O'||s==='o')?d:s}
-
-// Animated counter
 function animateCounter(el,target,duration=1400){if(!target)return;const start=parseInt(el.dataset.target||'0');el.dataset.target=target;const startTime=performance.now();function step(now){const t=Math.min(1,(now-startTime)/duration);const eased=1-Math.pow(1-t,3);const val=Math.floor(start+(target-start)*eased);el.textContent=val.toLocaleString();if(t<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 
 let MEMBERS=[],STATS={};
@@ -276,17 +287,19 @@ const fullData=fullRows.slice(1).filter(r=>r.length>=4&&r[0]).map(r=>{const o={}
 const dirRows=parseCSV(dirCsv),dH=dirRows[0];
 const dByName={},dByEmail={};
 dirRows.slice(1).filter(r=>r.length>=4&&r[0]).forEach(r=>{const o={};dH.forEach((h,i)=>o[h]=(r[i]||'').trim());if(o['이름'])dByName[o['이름']]=o;if(o['이메일'])dByEmail[o['이메일'].toLowerCase()]=o});
-MEMBERS=fullData.map(d=>{const dir=dByName[d['성명']]||dByEmail[(d['이메일']||'').toLowerCase()]||null;const fE=d['23대 임원 직책']||'',fC=d['지회장']||'';const dC=dir?(dir['지회장']||''):'',dHo=dir?(dir['명예회장_회기']||''):'',dB=dir?(dir['이사장단']||''):'',dE=dir?(dir['상임집행부']||''):'',dA=dir?(dir['감사']||''):'';const iCP=aF(fC)||aF(dC),iA=aF(dA),hH=aF(dHo),hB=aF(dB),hE=aF(fE)||aF(dE);const isDir=iCP||iA||hH||hB||hE;return {no:d['번호']||'',country:d['국가']||'',chapter:d['지회']||'',name:d['성명']||'',region:dir?(dir['권역']||gR(d['국가'])):gR(d['국가']),city:dir?(dir['도시']||''):'',company:d['회사명']||'',industry:d['업종']||'',email:d['이메일']||'',pos:{exec_label:aL(dE||fE,'임원'),board_label:aL(dB,'이사'),honor_label:aL(dHo,'명예회장'),audit_label:aL(dA,'감사'),chapter_label:aL(fC||dC,'지회장'),is_chapter_pres:iCP,is_auditor:iA,has_honor:hH,has_board:hB,has_exec:hE},isDirector:isDir,committees:classify(d['업종']||'')}});
+MEMBERS=fullData.map(d=>{const dir=dByName[d['성명']]||dByEmail[(d['이메일']||'').toLowerCase()]||null;const fE=d['23대 임원 직책']||'',fC=d['지회장']||'';const dC=dir?(dir['지회장']||''):'',dHo=dir?(dir['명예회장_회기']||''):'',dB=dir?(dir['이사장단']||''):'',dE=dir?(dir['상임집행부']||''):'',dA=dir?(dir['감사']||''):'';const iCP=aF(fC)||aF(dC),iA=aF(dA),hH=aF(dHo),hB=aF(dB),hE=aF(fE)||aF(dE);const isDir=iCP||iA||hH||hB||hE;return {no:d['번호']||'',country:d['국가']||'',chapter:d['지회']||'',name:d['성명']||'',region:dir?(dir['권역']||gR(d['국가'])):gR(d['국가']),city:dir?(dir['도시']||''):'',company:d['회사명']||'',industry:d['업종']||'',email:d['이메일']||'',pos:{exec_label:aL(dE||fE,'임원'),board_label:aL(dB,'이사'),honor_label:aL(dHo,'명예회장'),audit_label:aL(dA,'감사'),chapter_label:aL(fC||dC,'지회장'),is_chapter_pres:iCP,is_auditor:iA,has_honor:hH,has_board:hB,has_exec:hE},isDirector:isDir,categories:classify(d['업종']||'')}});
 STATS={total:MEMBERS.length,directors:0,chapterPres:0,auditors:0};
 MEMBERS.forEach(m=>{if(m.isDirector)STATS.directors++;if(m.pos.is_chapter_pres)STATS.chapterPres++;if(m.pos.is_auditor)STATS.auditors++});
 }catch(e){
-document.getElementById('content').innerHTML='<div class="empty-state"><h3>데이터 불러오기 실패</h3><p>'+esc(e.message)+'</p><p>Google Sheets URL이 공개 게시되어 있는지 확인해 주세요.</p></div>';
-return;
+document.getElementById('content').innerHTML='<div class="empty-state"><h3>데이터 불러오기 실패</h3><p>'+esc(e.message)+'</p></div>';return;
 }
 
-const cMap={};COMMITTEES.forEach(c=>cMap[c.n]=c);
+const cMap={};CATEGORIES.forEach(c=>cMap[c.n]=c);
 const countries={},regions={},chapters={};
 MEMBERS.forEach(m=>{if(m.country)countries[m.country]=(countries[m.country]||0)+1;if(m.region)regions[m.region]=(regions[m.region]||0)+1;if(m.chapter){const k=m.country+' / '+m.chapter;chapters[k]=(chapters[k]||0)+1}});
+
+// Count active categories (>= 1 member)
+const activeCats=CATEGORIES.filter(c=>MEMBERS.some(m=>(m.categories||[]).includes(c.n))).length;
 
 document.getElementById('hdrTotal').textContent='전체 '+STATS.total.toLocaleString()+'명';
 document.getElementById('hdrDirectors').textContent='임원 '+STATS.directors+'명';
@@ -294,11 +307,10 @@ document.getElementById('hdrCountries').textContent=Object.keys(countries).lengt
 animateCounter(document.getElementById('heroTotal'),STATS.total);
 animateCounter(document.getElementById('heroDirectors'),STATS.directors);
 animateCounter(document.getElementById('heroChapterPres'),STATS.chapterPres);
-animateCounter(document.getElementById('heroAuditors'),STATS.auditors);
+animateCounter(document.getElementById('heroCategories'),activeCats);
 animateCounter(document.getElementById('heroCountries'),Object.keys(countries).length);
 document.getElementById('genDate').textContent=new Date().toLocaleString('ko-KR');
 
-// Top countries strip
 const topList=document.getElementById('topCountriesList');
 const topCountries=Object.keys(countries).sort((a,b)=>countries[b]-countries[a]).slice(0,12);
 topList.innerHTML=topCountries.map(c=>'<button class="country-chip" data-country="'+esc(c)+'"><span class="country-chip-flag">'+flag(c)+'</span><span>'+esc(c)+'</span><span class="country-chip-count">'+countries[c]+'</span></button>').join('');
@@ -308,16 +320,81 @@ const rf=document.getElementById('regionFilter');REGIONS.forEach(r=>{if(regions[
 const cf=document.getElementById('countryFilter');Object.keys(countries).sort((a,b)=>countries[b]-countries[a]).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=flag(c)+' '+c+' ('+countries[c]+')';cf.appendChild(o)});
 const chf=document.getElementById('chapterFilter');Object.keys(chapters).sort((a,b)=>chapters[b]-chapters[a]).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c+' ('+chapters[c]+')';chf.appendChild(o)});
 
-const state={view:'committees',search:'',region:'',country:'',chapter:'',position:'',committee:null,page:1,perPage:60};
-function filt(){const q=state.search.toLowerCase().trim();return MEMBERS.filter(m=>{const p=m.pos||{};if(state.region&&m.region!==state.region)return false;if(state.country&&m.country!==state.country)return false;if(state.chapter){if(m.country+' / '+m.chapter!==state.chapter)return false}if(state.position){if(state.position==='director'&&!m.isDirector)return false;if(state.position==='chapter'&&!p.is_chapter_pres)return false;if(state.position==='exec'&&!p.has_exec)return false;if(state.position==='board'&&!p.has_board)return false;if(state.position==='honor'&&!p.has_honor)return false;if(state.position==='audit'&&!p.is_auditor)return false}if(state.committee!==null){if(state.committee===0){if((m.committees||[]).length>0||!m.industry||!m.industry.trim())return false}else{if(!(m.committees||[]).includes(state.committee))return false}}if(q){const b=(m.no+' '+m.name+' '+m.region+' '+m.country+' '+m.chapter+' '+m.city+' '+m.industry+' '+m.company+' '+m.email+' '+(p.exec_label+' '+p.board_label+' '+p.honor_label+' '+p.audit_label+' '+p.chapter_label)).toLowerCase();if(!b.includes(q))return false}return true})}
+twemojify();
 
-function rCom(){const f=filt();const counts={};COMMITTEES.forEach(c=>counts[c.n]=0);f.forEach(m=>(m.committees||[]).forEach(n=>counts[n]++));const topC={};COMMITTEES.forEach(c=>{const cs={};f.filter(m=>(m.committees||[]).includes(c.n)).forEach(m=>{if(m.country)cs[m.country]=(cs[m.country]||0)+1});topC[c.n]=Object.keys(cs).sort((a,b)=>cs[b]-cs[a]).slice(0,4).map(co=>({co,count:cs[co]}))});let h='<div class="section-head"><h2 class="section-title">15개 통상위원회 분과</h2><span class="section-meta">필터 결과 '+f.length.toLocaleString()+'명 · 분과 클릭 시 회원 표시</span></div><div class="com-grid">';COMMITTEES.forEach(c=>{const fl=topC[c.n].map(x=>'<span class="com-flag-big"><span class="com-flag-big-emoji">'+flag(x.co)+'</span>'+esc(x.co)+'<span class="com-flag-big-count">'+x.count+'</span></span>').join('');h+='<div class="com-card fade-in" data-com="'+c.n+'" style="--c:'+c.color+'"><div class="com-card-head"><div class="com-num">'+c.n+'</div><div class="com-count"><span class="com-count-num">'+counts[c.n].toLocaleString()+'</span><span class="com-count-lbl">명</span></div></div><div class="com-name">'+esc(c.name)+'</div><div class="com-short">'+esc(c.short)+'</div>'+(fl?'<div class="com-flags-block"><div class="com-flags-label">상위 국가</div><div class="com-flags">'+fl+'</div></div>':'')+'<div class="com-card-cta">자세히 →</div></div>'});h+='</div>';document.getElementById('content').innerHTML=h;document.querySelectorAll('.com-card').forEach(el=>el.onclick=()=>{state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})})}
+const state={view:'committees',search:'',region:'',country:'',chapter:'',position:'',committee:null,page:1,perPage:60};
+
+function filt(){const q=state.search.toLowerCase().trim();return MEMBERS.filter(m=>{const p=m.pos||{};if(state.region&&m.region!==state.region)return false;if(state.country&&m.country!==state.country)return false;if(state.chapter){if(m.country+' / '+m.chapter!==state.chapter)return false}if(state.position){if(state.position==='director'&&!m.isDirector)return false;if(state.position==='chapter'&&!p.is_chapter_pres)return false;if(state.position==='exec'&&!p.has_exec)return false;if(state.position==='board'&&!p.has_board)return false;if(state.position==='honor'&&!p.has_honor)return false;if(state.position==='audit'&&!p.is_auditor)return false}if(state.committee!==null){if(state.committee===0){if((m.categories||[]).length>0||!m.industry||!m.industry.trim())return false}else{if(!(m.categories||[]).includes(state.committee))return false}}if(q){const b=(m.no+' '+m.name+' '+m.region+' '+m.country+' '+m.chapter+' '+m.city+' '+m.industry+' '+m.company+' '+m.email+' '+(p.exec_label+' '+p.board_label+' '+p.honor_label+' '+p.audit_label+' '+p.chapter_label)).toLowerCase();if(!b.includes(q))return false}return true})}
+
+function rCom(){
+  const f=filt();
+  const counts={};CATEGORIES.forEach(c=>counts[c.n]=0);
+  f.forEach(m=>(m.categories||[]).forEach(n=>counts[n]++));
+  const topC={};CATEGORIES.forEach(c=>{const cs={};f.filter(m=>(m.categories||[]).includes(c.n)).forEach(m=>{if(m.country)cs[m.country]=(cs[m.country]||0)+1});topC[c.n]=Object.keys(cs).sort((a,b)=>cs[b]-cs[a]).slice(0,4).map(co=>({co,count:cs[co]}))});
+  // FILTER: when active filters/search, show only categories with members
+  const hasFilter=state.search||state.region||state.country||state.chapter||state.position;
+  const visibleCats=hasFilter?CATEGORIES.filter(c=>counts[c.n]>0).sort((a,b)=>counts[b.n]-counts[a.n]):CATEGORIES.filter(c=>counts[c.n]>0||!hasFilter).sort((a,b)=>counts[b.n]-counts[a.n]);
+  let h='<div class="section-head"><h2 class="section-title">업종별 회원 분포</h2><span class="section-meta">'+(hasFilter?'필터 결과 '+f.length.toLocaleString()+'명 · '+visibleCats.length+'개 업종':f.length.toLocaleString()+'명 · '+visibleCats.length+'개 업종 · 클릭 시 회원 표시')+'</span></div>';
+  if(visibleCats.length===0){h+='<div class="empty-state"><h3>일치하는 업종이 없습니다</h3><p>다른 검색어 또는 필터를 시도해 보세요.</p></div>';document.getElementById('content').innerHTML=h;return}
+  h+='<div class="com-grid">';
+  visibleCats.forEach(c=>{
+    const fl=topC[c.n].map(x=>'<span class="com-flag-big"><span class="com-flag-big-emoji">'+flag(x.co)+'</span>'+esc(x.co)+'<span class="com-flag-big-count">'+x.count+'</span></span>').join('');
+    const tsName=c.ts>0?'#'+c.ts+' '+TONGSANG_NAMES[c.ts]:'-';
+    h+='<div class="com-card" data-com="'+c.n+'" style="--c:'+c.color+'"><div class="com-card-head"><div class="com-num"><span class="cat-emoji">'+c.emoji+'</span></div><div class="com-count"><span class="com-count-num">'+counts[c.n].toLocaleString()+'</span><span class="com-count-lbl">명</span></div></div><div class="com-name">'+esc(c.name)+'</div><div class="com-short">'+esc(c.short)+'</div>'+(c.ts>0?'<div class="com-tongsang"><span class="com-tongsang-label">추천 통상위원회</span> '+esc(tsName)+'</div>':'')+(fl?'<div class="com-flags-block"><div class="com-flags-label">상위 국가</div><div class="com-flags">'+fl+'</div></div>':'')+'<div class="com-card-cta">자세히 →</div></div>';
+  });
+  h+='</div>';
+  document.getElementById('content').innerHTML=h;twemojify();
+  document.querySelectorAll('.com-card').forEach(el=>el.onclick=()=>{state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});
+}
 
 function posBadges(p){if(!p)return'';const out=[];if(p.honor_label)out.push('<span class="mc-position honor">👑 '+esc(p.honor_label)+'</span>');if(p.board_label)out.push('<span class="mc-position board">💼 '+esc(p.board_label)+'</span>');if(p.exec_label)out.push('<span class="mc-position exec">⚡ '+esc(p.exec_label)+'</span>');if(p.is_auditor)out.push('<span class="mc-position audit">🔍 '+esc(p.audit_label||'감사')+'</span>');if(p.is_chapter_pres)out.push('<span class="mc-position chapter">📍 '+esc(p.chapter_label||'지회장')+'</span>');return out.length?'<div class="mc-positions">'+out.join('')+'</div>':''}
 
-function mCard(m){const t=(m.committees||[]).map(n=>{const c=cMap[n];return '<span class="mc-tag" data-com="'+n+'" style="--tc:'+c.color+'">'+n+' '+esc(c.name)+'</span>'}).join('');const ini=initials(m.name);return '<div class="member-card fade-in'+(m.isDirector?' is-director':'')+'"><div class="mc-head"><div class="mc-avatar">'+esc(ini)+'</div><div class="mc-info"><div class="mc-name-row"><div class="mc-name">'+esc(m.name||'-')+'</div><div class="mc-loc-flag">'+flag(m.country)+'</div></div><div class="mc-loc-text">'+(m.region?'<span class="mc-loc-region-badge">'+esc(m.region)+'</span>':'')+esc(m.country)+(m.chapter?' · '+esc(m.chapter):'')+'</div></div></div>'+posBadges(m.pos)+(m.company?'<div class="mc-company"><span class="mc-company-icon">🏢</span>'+esc(m.company)+'</div>':'')+(m.industry?'<div class="mc-industry"><span class="mc-industry-icon">📋</span><span>'+esc(m.industry)+'</span></div>':'')+(t?'<div class="mc-tags">'+t+'</div>':'')+(m.email?'<a class="mc-email" href="mailto:'+esc(m.email)+'">✉️ '+esc(m.email)+'</a>':'')+'</div>'}
+function tongsangSuggestion(cats){
+  if(!cats||cats.length===0)return '';
+  // Use the first matched category's recommended 통상
+  const tsSet=new Set();
+  cats.forEach(n=>{const c=cMap[n];if(c&&c.ts>0)tsSet.add(c.ts)});
+  if(tsSet.size===0)return '';
+  const tsList=Array.from(tsSet).slice(0,2).map(ts=>'#'+ts+' '+TONGSANG_NAMES[ts]).join(' · ');
+  return '<div class="mc-tongsang"><span class="mc-tongsang-label">추천 통상</span><a class="mc-tongsang-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">'+esc(tsList)+'</a></div>';
+}
 
-function rMem(){const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));if(state.page>tp)state.page=tp;const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);let h='';if(state.view==='memberDetail'&&state.committee!==null){const c=state.committee===0?null:cMap[state.committee];const col=c?c.color:'#5A6478';const nm=c?c.name:'기타 (미분류)';const sh=c?c.short:'OTHERS';const nu=c?c.n:'?';h+='<button class="com-detail-back" onclick="window._back()">← 분과 목록으로</button>';h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:'+col+'">'+nu+'</div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 통상위원회 공식 페이지에서 임원진 보기</a>':'')+'</div>'}h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'전체 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}else{h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';if(tp>1){h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>'}}document.getElementById('content').innerHTML=h;document.querySelectorAll('.mc-tag').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})})}
+function mCard(m){
+  const t=(m.categories||[]).map(n=>{const c=cMap[n];return '<span class="mc-cat" data-com="'+n+'" style="--tc:'+c.color+'"><span class="cat-emoji">'+c.emoji+'</span>'+esc(c.name)+'</span>'}).join('');
+  const ini=initials(m.name);
+  return '<div class="member-card'+(m.isDirector?' is-director':'')+'"><div class="mc-head"><div class="mc-avatar">'+esc(ini)+'</div><div class="mc-info"><div class="mc-name-row"><div class="mc-name">'+esc(m.name||'-')+'</div><div class="mc-loc-flag">'+flag(m.country)+'</div></div><div class="mc-loc-text">'+(m.region?'<span class="mc-loc-region-badge">'+esc(m.region)+'</span>':'')+esc(m.country)+(m.chapter?' · '+esc(m.chapter):'')+'</div></div></div>'+posBadges(m.pos)+(m.company?'<div class="mc-company">🏢 '+esc(m.company)+'</div>':'')+(m.industry?'<div class="mc-industry">📋 '+esc(m.industry)+'</div>':'')+(t?'<div class="mc-cats">'+t+'</div>':'')+tongsangSuggestion(m.categories)+(m.email?'<a class="mc-email" href="mailto:'+esc(m.email)+'">✉️ '+esc(m.email)+'</a>':'')+'</div>';
+}
+
+function rMem(){
+  const f=filt();const tot=f.length;const tp=Math.max(1,Math.ceil(tot/state.perPage));
+  if(state.page>tp)state.page=tp;
+  const s=(state.page-1)*state.perPage;const pi=f.slice(s,s+state.perPage);
+  let h='';
+  if(state.view==='memberDetail'&&state.committee!==null){
+    const c=state.committee===0?null:cMap[state.committee];
+    const col=c?c.color:'#5A6478';
+    const nm=c?c.name:'기타 (미분류)';
+    const sh=c?c.short:'OTHER';
+    const em=c?c.emoji:'❓';
+    h+='<button class="com-detail-back" onclick="window._back()">← 업종 목록으로</button>';
+    h+='<div class="com-detail-banner" style="--c:'+col+'"><div class="com-detail-head"><div class="com-detail-num" style="background:'+col+'"><span class="cat-emoji">'+em+'</span></div><div><div class="com-detail-name">'+esc(nm)+'</div><div class="com-detail-short" style="color:'+col+'">'+sh+' · '+f.length.toLocaleString()+'명</div></div></div>'+(c&&c.ts>0?'<a class="com-detail-link" href="https://www.okta.net/library/getCommittee2SubPage.do" target="_blank">🔗 추천 통상위원회: #'+c.ts+' '+esc(TONGSANG_NAMES[c.ts])+' →</a>':'')+'</div>';
+  }
+  h+='<div class="section-head"><h2 class="section-title">'+(state.view==='all'?'전체 회원':'회원 목록')+'</h2><span class="section-meta">'+tot.toLocaleString()+'명 · '+state.page+' / '+tp+' 페이지</span></div>';
+  if(tot===0){h+='<div class="empty-state"><h3>검색 결과가 없습니다</h3></div>'}
+  else{
+    h+='<div class="member-list">'+pi.map(mCard).join('')+'</div>';
+    if(tp>1){
+      h+='<div class="pagination"><button data-pg="prev" '+(state.page===1?'disabled':'')+'>← 이전</button>';
+      const pgs=[1];for(let i=state.page-2;i<=state.page+2;i++)if(i>1&&i<tp)pgs.push(i);if(tp>1)pgs.push(tp);
+      const u=Array.from(new Set(pgs)).sort((a,b)=>a-b);let prev=0;
+      u.forEach(p=>{if(p-prev>1)h+='<span style="color:#999;padding:0 4px">…</span>';h+='<button data-pg="'+p+'" class="'+(p===state.page?'active':'')+'">'+p+'</button>';prev=p});
+      h+='<button data-pg="next" '+(state.page===tp?'disabled':'')+'>다음 →</button></div>';
+    }
+  }
+  document.getElementById('content').innerHTML=h;twemojify();
+  document.querySelectorAll('.mc-cat').forEach(el=>el.onclick=e=>{e.stopPropagation();state.committee=parseInt(el.dataset.com);state.view='memberDetail';state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})});
+  document.querySelectorAll('.pagination button[data-pg]').forEach(el=>el.onclick=()=>{const p=el.dataset.pg;const tp=Math.max(1,Math.ceil(filt().length/state.perPage));if(p==='prev')state.page=Math.max(1,state.page-1);else if(p==='next')state.page=Math.min(tp,state.page+1);else state.page=parseInt(p);render();window.scrollTo({top:0,behavior:'smooth'})});
+}
 
 function render(){document.getElementById('viewCom').classList.toggle('active',state.view==='committees');document.getElementById('viewAll').classList.toggle('active',state.view==='all');if(state.view==='committees')rCom();else rMem()}
 window._back=()=>{state.view='committees';state.committee=null;state.page=1;render();window.scrollTo({top:0,behavior:'smooth'})};
